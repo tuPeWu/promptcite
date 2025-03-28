@@ -6,6 +6,11 @@ export default function AccountDropdown() {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
 
+  console.log("ENV check:", {
+    domain: import.meta.env.VITE_AUTH0_DOMAIN,
+    clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
+  });
+  
   console.log('AccountDropdown rendering...');
   console.log({
     isLoading,

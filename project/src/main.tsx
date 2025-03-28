@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
-      cacheLocation="localstorage" // ✅ This line makes the login persist
+      cacheLocation="localstorage" 
     >
       <App />
     </Auth0Provider>

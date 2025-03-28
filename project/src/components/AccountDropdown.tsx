@@ -6,9 +6,20 @@ export default function AccountDropdown() {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (isLoading) return null;
+  console.log('AccountDropdown rendering...');
+  console.log({
+    isLoading,
+    isAuthenticated,
+    user,
+  });
 
-  if (!isAuthenticated) {
+  if (isLoading) {
+    console.log('Auth0 is still loading...');
+    return null;
+  }
+
+  if (!isAuthenticated || !user) {
+    console.log('User is NOT authenticated.');
     return (
       <button
         className="text-sm px-4 py-2 rounded hover:underline"
@@ -18,6 +29,8 @@ export default function AccountDropdown() {
       </button>
     );
   }
+
+  console.log('User IS authenticated:', user);
 
   return (
     <div className="relative inline-block text-left">

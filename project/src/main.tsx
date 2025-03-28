@@ -15,10 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}
-      cacheLocation="localstorage"
-      useRefreshTokens={true}
-      useCookiesForTransactions={true}
-    >
+         >
       <App />
     </Auth0Provider>
   </React.StrictMode>

@@ -33,10 +33,13 @@ const SinglePrompt = () => {
   const generateCitation = (data: any) => {
     const firstFiveWords = data.prompt?.split(' ').slice(0, 5).join(' ');
     const model = data.aiModel === 'Other' ? data.otherModel : data.aiModel;
-    const citationText = `${data.author}, "${firstFiveWords}...", ${model}$
-      {data.additionalInfo ? `, ${data.additionalInfo}` : ''}, ${data.date}, https://prompt-cite.com/prompts/${id}`;
+    const citationText = `${data.author}, "${firstFiveWords}...", ${model}${
+      data.additionalInfo ? `, ${data.additionalInfo}` : ''
+    }, ${data.date}, https://prompt-cite.com/prompts/${id}`;
+    
     setCitation(citationText);
   };
+  
 
   const handleChange = (field: string, value: string) => {
     setPromptData((prev: any) => ({ ...prev, [field]: value }));

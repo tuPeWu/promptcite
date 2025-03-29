@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,9 +10,19 @@ import SignIn from './pages/SignIn';
 import Settings from './pages/Settings';
 import MyPrompts from './pages/MyPrompts';
 import GeneratePrompt from './pages/GeneratePrompt';
-import PrivateRoute from './PrivateRoute'; 
+import PrivateRoute from './PrivateRoute';
+import { useAuth0 } from '@auth0/auth0-react';
+import { syncUserToFirebase } from './utils/syncUserToFirebase';
 
 function App() {
+  const { isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      syncUserToFirebase(user);
+    }
+  }, [isAuthenticated, user]);
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gray-50">

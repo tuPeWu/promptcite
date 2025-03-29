@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import { Settings as SettingsIcon, LogOut, Trash2 } from 'lucide-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Settings = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  
-  // Mock user data - in production this would come from your auth system
-  const userData = {
-    email: 'user@example.com',
-    joinDate: new Date('2024-01-01').toLocaleDateString(),
-  };
+  const { user, logout } = useAuth0();
 
   const handleLogout = () => {
-    // Implement logout logic
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
   const handleDeleteAccount = () => {
-    // Implement account deletion logic
+    alert('Account deletion is not implemented yet.');
+    // Future: Add account deletion logic here
   };
 
   const handleChangePassword = () => {
-    // Implement password change logic
+    alert('Password change is handled via Auth0.');
+    // Optional: You can trigger a password reset email via Auth0 Management API
+  };
+
+  const userData = {
+    email: user?.email || 'Unknown',
+    joinDate: '—', // Optional: Replace with actual value if stored
   };
 
   return (

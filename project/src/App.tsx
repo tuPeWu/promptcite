@@ -1,121 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { db } from './firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Instructions from './pages/Instructions';
+import Contact from './pages/Contact';
+import SignIn from './pages/SignIn';
+import Settings from './pages/Settings';
+import MyPrompts from './pages/MyPrompts';
+import GeneratePrompt from './pages/GeneratePrompt';
+import SinglePrompt from './pages/SinglePrompt';
+import PrivateRoute from './PrivateRoute';
 
-const SinglePrompt = () => {
-  const { id } = useParams();
-  const [promptData, setPromptData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [citation, setCitation] = useState('');
-
-  useEffect(() => {
-    const fetchPrompt = async () => {
-      if (!id) return;
-      try {
-        const docRef = doc(db, 'prompts', id);
-        const snapshot = await getDoc(docRef);
-        if (snapshot.exists()) {
-          const data = snapshot.data();
-          setPromptData(data);
-          generateCitation(data);
-        }
-      } catch (err) {
-        console.error('Failed to load prompt:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPrompt();
-  }, [id]);
-
-  const generateCitation = (data: any) => {
-    const firstFiveWords = data.prompt?.split(' ').slice(0, 5).join(' ');
-    const model = data.aiModel === 'Other' ? data.otherModel : data.aiModel;
-    const citationText = `${data.author}, "${firstFiveWords}...", ${model}${
-      data.additionalInfo ? `, ${data.additionalInfo}` : ''
-    }, ${data.date}, https://prompt-cite.com/prompts/${id}`;
-    
-    setCitation(citationText);
-  };
-  
-
-  const handleChange = (field: string, value: string) => {
-    setPromptData((prev: any) => ({ ...prev, [field]: value }));
-  };
-
-  const handleRegenerate = async () => {
-    if (!id || !promptData) return;
-    generateCitation(promptData);
-    try {
-      await updateDoc(doc(db, 'prompts', id), {
-        ...promptData,
-        citation,
-        updatedAt: new Date().toISOString(),
-      });
-      alert('Prompt updated and citation regenerated!');
-    } catch (err) {
-      console.error('Failed to update prompt:', err);
-    }
-  };
-
-  if (loading) return <div className="p-6 text-center">Loading...</div>;
-  if (!promptData) return <div className="p-6 text-center text-red-500">Prompt not found.</div>;
-
+function App() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <Link to="/my-prompts" className="text-blue-600 hover:underline text-sm mb-4 inline-block">
-        ← Back to My Prompts
-      </Link>
-
-      <h1 className="text-2xl font-bold mb-6">Edit Prompt</h1>
-
-      <div className="space-y-4">
-        <textarea
-          className="w-full h-24 p-2 border rounded"
-          value={promptData.prompt}
-          onChange={(e) => handleChange('prompt', e.target.value)}
-        />
-        <input
-          type="text"
-          className="w-full p-2 border rounded"
-          value={promptData.author}
-          onChange={(e) => handleChange('author', e.target.value)}
-        />
-        <input
-          type="date"
-          className="w-full p-2 border rounded"
-          value={promptData.date}
-          onChange={(e) => handleChange('date', e.target.value)}
-        />
-        <input
-          type="text"
-          className="w-full p-2 border rounded"
-          value={promptData.aiModel}
-          onChange={(e) => handleChange('aiModel', e.target.value)}
-        />
-        <input
-          type="text"
-          className="w-full p-2 border rounded"
-          value={promptData.additionalInfo || ''}
-          onChange={(e) => handleChange('additionalInfo', e.target.value)}
-        />
+    <Router>
+      <div className="min-h-screen flex flex-col bg-gray-50">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/instructions" element={<Instructions />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/generate" element={<GeneratePrompt />} />
+            <Route path="/prompts/:id" element={<SinglePrompt />} />
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <Settings />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/my-prompts"
+              element={
+                <PrivateRoute>
+                  <MyPrompts />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-
-      <button
-        onClick={handleRegenerate}
-        className="mt-6 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-      >
-        RE-GENERATE
-      </button>
-
-      <div className="mt-8 p-4 bg-gray-100 border rounded">
-        <h2 className="font-semibold mb-2">Generated Citation</h2>
-        <pre className="whitespace-pre-wrap text-sm font-mono">{citation}</pre>
-      </div>
-    </div>
+    </Router>
   );
-};
+}
 
-export default SinglePrompt;
+export default App;

@@ -9,48 +9,27 @@ const SinglePrompt = () => {
   const [loading, setLoading] = useState(true);
   const [citation, setCitation] = useState('');
 
-  console.log("🚀 Component mounted!");
-  console.log("🔎 useParams() id:", id);
-  
   useEffect(() => {
     const fetchPrompt = async () => {
+      if (!id) {
+        console.warn("❌ No ID found. Aborting...");
+        setLoading(false);
+        return;
+      }
 
-        console.log("🟡 Running fetchPrompt()");
-        if (!id) {
-          console.warn("❌ No ID found. Aborting...");
-          setLoading(false);
-          return;
-        }
-        try {
-          const docRef = doc(db, 'prompts', id);
-          console.log("📄 Fetching document with ID:", id);
-          const snapshot = await getDoc(docRef);
-          if (snapshot.exists()) {
-            console.log("✅ Document found:", snapshot.data());
-            const data = snapshot.data();
-            setPromptData(data);
-            generateCitation(data);
-          } else {
-            console.warn("⚠️ Document not found!");
-          }
-        } catch (err) {
-          console.error("❌ Error fetching doc:", err);
-        } finally {
-          console.log("✅ Done loading");
-          setLoading(false);
-        }
-                
-      if (!id) return;
       try {
         const docRef = doc(db, 'prompts', id);
         const snapshot = await getDoc(docRef);
+
         if (snapshot.exists()) {
           const data = snapshot.data();
           setPromptData(data);
           generateCitation(data);
+        } else {
+          console.warn("⚠️ Document not found");
         }
       } catch (err) {
-        console.error('Failed to load prompt:', err);
+        console.error("❌ Error fetching document:", err);
       } finally {
         setLoading(false);
       }
@@ -62,8 +41,9 @@ const SinglePrompt = () => {
   const generateCitation = (data: any) => {
     const firstFiveWords = data.prompt?.split(' ').slice(0, 5).join(' ');
     const model = data.aiModel === 'Other' ? data.otherModel : data.aiModel;
-    const citationText = `${data.author}, "${firstFiveWords}...", ${model}$
-      {data.additionalInfo ? `, ${data.additionalInfo}` : ''}, ${data.date}, https://prompt-cite.com/prompts/${id}`;
+    const citationText = `${data.author}, "${firstFiveWords}...", ${model}${
+      data.additionalInfo ? `, ${data.additionalInfo}` : ''
+    }, ${data.date}, https://prompt-cite.com/prompts/${id}`;
     setCitation(citationText);
   };
 
@@ -73,16 +53,18 @@ const SinglePrompt = () => {
 
   const handleRegenerate = async () => {
     if (!id || !promptData) return;
+
     generateCitation(promptData);
+
     try {
       await updateDoc(doc(db, 'prompts', id), {
         ...promptData,
         citation,
         updatedAt: new Date().toISOString(),
       });
-      alert('Prompt updated and citation regenerated!');
+      alert('✅ Prompt updated and citation regenerated!');
     } catch (err) {
-      console.error('Failed to update prompt:', err);
+      console.error('❌ Failed to update prompt:', err);
     }
   };
 

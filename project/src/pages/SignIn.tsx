@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Facebook, Mail } from 'lucide-react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { syncUserToFirebase } from './utils/syncUserToFirebase';
+import { syncUserToFirebase } from '../utils/syncUserToFirebase';
 
 const SignIn = () => {
   const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { db } from '../firebase';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 const GeneratePrompt = () => {
   const [formData, setFormData] = useState({
@@ -13,19 +16,39 @@ const GeneratePrompt = () => {
 
   const [citation, setCitation] = useState('');
   const [showCitation, setShowCitation] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const firstFiveWords = formData.prompt.split(' ').slice(0, 5).join(' ');
     const model = formData.aiModel === 'Other' ? formData.otherModel : formData.aiModel;
     const repositoryLink = `https://prompt-cite.com/prompts/${Date.now()}`;
-    
+
     const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
       formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
     }, ${formData.date}, ${repositoryLink}`;
-    
+
     setCitation(citationText);
     setShowCitation(true);
+
+    // Store prompt to Firestore if user is logged in
+    if (isAuthenticated && user) {
+      try {
+        await addDoc(collection(db, 'prompts'), {
+          userId: user.sub,
+          prompt: formData.prompt,
+          author: formData.author,
+          date: formData.date,
+          aiModel: model,
+          additionalInfo: formData.additionalInfo,
+          citation: citationText,
+          createdAt: Timestamp.now(),
+        });
+        console.log('✅ Prompt stored in Firestore');
+      } catch (error) {
+        console.error('❌ Failed to store prompt in Firestore:', error);
+      }
+    }
   };
 
   return (

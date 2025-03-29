@@ -1,41 +1,70 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search, Edit2, Trash2 } from 'lucide-react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { db } from '../firebase';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+  Timestamp
+} from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const MyPrompts = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [userPrompts, setUserPrompts] = useState<any[]>([]);
+  const { user, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
-  // Mock data - in production this would come from your database
-  const mockPrompts = [
-    {
-      id: 1,
-      citation: '[John Doe], "Create a landing page for...", ChatGPT, GPT-4, 2024-03-15, https://prompt-cite.com/prompts/123',
-      prompt: 'Create a landing page for a new SaaS product with modern design principles',
-      author: 'John Doe',
-      date: '2024-03-15',
-      model: 'ChatGPT',
-      additionalInfo: 'GPT-4'
-    },
-    {
-      id: 2,
-      citation: '[John Doe], "Generate a color palette for...", Gemini, Pro, 2024-03-14, https://prompt-cite.com/prompts/124',
-      prompt: 'Generate a color palette for a luxury brand identity',
-      author: 'John Doe',
-      date: '2024-03-14',
-      model: 'Gemini',
-      additionalInfo: 'Pro'
-    }
-  ];
+  useEffect(() => {
+    const fetchPrompts = async () => {
+      if (!user) return;
 
-  const filteredPrompts = mockPrompts.filter(prompt =>
-    prompt.citation.toLowerCase().includes(searchTerm.toLowerCase())
+      try {
+        const q = query(
+          collection(db, 'prompts'),
+          where('userId', '==', user.sub),
+          where('deleted', '!=', true) // Exclude soft-deleted prompts
+        );
+        const querySnapshot = await getDocs(q);
+        const prompts = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setUserPrompts(prompts);
+      } catch (err) {
+        console.error('❌ Error fetching prompts:', err);
+      }
+    };
+
+    if (isAuthenticated) fetchPrompts();
+  }, [isAuthenticated, user]);
+
+  const filteredPrompts = userPrompts.filter(prompt =>
+    prompt.citation?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleEdit = (id: number) => {
-    // Implement edit functionality
+  const handleEdit = (id: string) => {
+    navigate(`/my-prompts/${id}`);
   };
 
-  const handleDelete = (id: number) => {
-    // Implement delete functionality
+  const handleDelete = async (id: string) => {
+    const confirmed = window.confirm('Are you sure you want to delete this prompt?');
+    if (!confirmed) return;
+
+    try {
+      await updateDoc(doc(db, 'prompts', id), {
+        deleted: true,
+        deletedAt: Timestamp.now()
+      });
+      setUserPrompts((prev) => prev.filter((p) => p.id !== id));
+      console.log('🗑️ Prompt soft-deleted');
+    } catch (err) {
+      console.error('❌ Failed to soft-delete prompt:', err);
+    }
   };
 
   return (
@@ -71,40 +100,3 @@ const MyPrompts = () => {
                   className="p-2 text-gray-600 hover:text-red-600 transition-colors"
                 >
                   <Trash2 size={18} />
-                </button>
-              </div>
-            </div>
-
-            <div className="space-y-2 text-sm text-gray-600">
-              <div>
-                <span className="font-semibold">Prompt:</span> {prompt.prompt}
-              </div>
-              <div>
-                <span className="font-semibold">Author:</span> {prompt.author}
-              </div>
-              <div>
-                <span className="font-semibold">Date:</span> {prompt.date}
-              </div>
-              <div>
-                <span className="font-semibold">Model:</span> {prompt.model}
-              </div>
-              {prompt.additionalInfo && (
-                <div>
-                  <span className="font-semibold">Additional Info:</span> {prompt.additionalInfo}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-
-        {filteredPrompts.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
-            No prompts found. Start generating some citations!
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default MyPrompts;

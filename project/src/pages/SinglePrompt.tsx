@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { db } from '../firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
@@ -62,10 +62,6 @@ const SinglePrompt = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <Link to="/my-prompts" className="text-blue-600 hover:underline text-sm mb-4 inline-block">
-        ← Back to My Prompts
-      </Link>
-
       <h1 className="text-2xl font-bold mb-6">Edit Prompt</h1>
 
       <div className="space-y-4">

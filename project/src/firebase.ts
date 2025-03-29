@@ -17,4 +17,10 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
+console.log("🔥 Firebase ENV check:", {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+});
+
 export { app, analytics, db };

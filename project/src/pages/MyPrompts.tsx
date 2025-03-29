@@ -9,7 +9,7 @@ import {
   getDocs,
   updateDoc,
   doc,
-  Timestamp
+  Timestamp,
 } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,12 +27,12 @@ const MyPrompts = () => {
         const q = query(
           collection(db, 'prompts'),
           where('userId', '==', user.sub),
-          where('deleted', '!=', true) // Exclude soft-deleted prompts
+          where('deleted', '!=', true)
         );
         const querySnapshot = await getDocs(q);
-        const prompts = querySnapshot.docs.map(doc => ({
+        const prompts = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setUserPrompts(prompts);
       } catch (err) {
@@ -43,7 +43,7 @@ const MyPrompts = () => {
     if (isAuthenticated) fetchPrompts();
   }, [isAuthenticated, user]);
 
-  const filteredPrompts = userPrompts.filter(prompt =>
+  const filteredPrompts = userPrompts.filter((prompt) =>
     prompt.citation?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -58,7 +58,7 @@ const MyPrompts = () => {
     try {
       await updateDoc(doc(db, 'prompts', id), {
         deleted: true,
-        deletedAt: Timestamp.now()
+        deletedAt: Timestamp.now(),
       });
       setUserPrompts((prev) => prev.filter((p) => p.id !== id));
       console.log('🗑️ Prompt soft-deleted');
@@ -101,3 +101,39 @@ const MyPrompts = () => {
                 >
                   <Trash2 size={18} />
                 </button>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-sm text-gray-600">
+              <div>
+                <span className="font-semibold">Prompt:</span> {prompt.prompt}
+              </div>
+              <div>
+                <span className="font-semibold">Author:</span> {prompt.author}
+              </div>
+              <div>
+                <span className="font-semibold">Date:</span> {prompt.date}
+              </div>
+              <div>
+                <span className="font-semibold">Model:</span> {prompt.aiModel}
+              </div>
+              {prompt.additionalInfo && (
+                <div>
+                  <span className="font-semibold">Additional Info:</span> {prompt.additionalInfo}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+
+        {filteredPrompts.length === 0 && (
+          <div className="text-center py-12 text-gray-500">
+            No prompts found. Start generating some citations!
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default MyPrompts;

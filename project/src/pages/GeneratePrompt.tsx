@@ -33,6 +33,7 @@ const GeneratePrompt = () => {
 
     // Store prompt to Firestore if user is logged in
     if (isAuthenticated && user) {
+      console.log("✅ Storing prompt for user:", user?.sub)
       try {
         await addDoc(collection(db, 'prompts'), {
           userId: user.sub,

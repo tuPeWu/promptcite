@@ -33,16 +33,6 @@ const GeneratePrompt = () => {
     setShowCitation(true);
 
     if (isAuthenticated && user) {
-      console.log('🔍 Attempting to add prompt to Firestore...', {
-        userId: user.sub,
-        prompt: formData.prompt,
-        author: formData.author,
-        date: formData.date,
-        aiModel: model,
-        additionalInfo: formData.additionalInfo,
-        citation: citationText
-      });
-
       try {
         const newPrompt = {
           userId: user.sub,
@@ -54,16 +44,17 @@ const GeneratePrompt = () => {
           citation: citationText,
           createdAt: Timestamp.now()
         };
-      
+
         console.log("🧪 Document to be added:", newPrompt);
-      
+
         await addDoc(collection(db, 'prompts'), newPrompt);
-      
+
         console.log('✅ Prompt successfully stored in Firestore');
       } catch (error) {
         console.error('❌ Error storing prompt in Firestore:', error);
       }
-      
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

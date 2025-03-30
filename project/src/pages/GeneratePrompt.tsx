@@ -44,7 +44,7 @@ const GeneratePrompt = () => {
       });
 
       try {
-        await addDoc(collection(db, 'prompts'), {
+        const newPrompt = {
           userId: user.sub,
           prompt: formData.prompt,
           author: formData.author,
@@ -53,13 +53,17 @@ const GeneratePrompt = () => {
           additionalInfo: formData.additionalInfo,
           citation: citationText,
           createdAt: Timestamp.now()
-        });
+        };
+      
+        console.log("🧪 Document to be added:", newPrompt);
+      
+        await addDoc(collection(db, 'prompts'), newPrompt);
+      
         console.log('✅ Prompt successfully stored in Firestore');
       } catch (error) {
         console.error('❌ Error storing prompt in Firestore:', error);
       }
-    }
-  };
+      
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

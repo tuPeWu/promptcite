@@ -20,6 +20,7 @@ const GeneratePrompt = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const firstFiveWords = formData.prompt.split(' ').slice(0, 5).join(' ');
     const model = formData.aiModel === 'Other' ? formData.otherModel : formData.aiModel;
     const repositoryLink = `https://prompt-cite.com/prompts/${Date.now()}`;
@@ -31,9 +32,17 @@ const GeneratePrompt = () => {
     setCitation(citationText);
     setShowCitation(true);
 
-    // Store prompt to Firestore if user is logged in
     if (isAuthenticated && user) {
-      console.log("✅ Storing prompt for user:", user?.sub)
+      console.log('🔍 Attempting to add prompt to Firestore...', {
+        userId: user.sub,
+        prompt: formData.prompt,
+        author: formData.author,
+        date: formData.date,
+        aiModel: model,
+        additionalInfo: formData.additionalInfo,
+        citation: citationText
+      });
+
       try {
         await addDoc(collection(db, 'prompts'), {
           userId: user.sub,
@@ -43,11 +52,11 @@ const GeneratePrompt = () => {
           aiModel: model,
           additionalInfo: formData.additionalInfo,
           citation: citationText,
-          createdAt: Timestamp.now(),
+          createdAt: Timestamp.now()
         });
-        console.log('✅ Prompt stored in Firestore');
+        console.log('✅ Prompt successfully stored in Firestore');
       } catch (error) {
-        console.error('❌ Failed to store prompt in Firestore:', error);
+        console.error('❌ Error storing prompt in Firestore:', error);
       }
     }
   };

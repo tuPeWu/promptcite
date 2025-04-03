@@ -170,4 +170,4 @@ const GeneratePrompt = () => {
         )}
       </div>
     </div>
-  );
+  );}

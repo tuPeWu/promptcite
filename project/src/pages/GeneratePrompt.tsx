@@ -171,3 +171,5 @@ const GeneratePrompt = () => {
       </div>
     </div>
   );}
+
+export default GeneratePrompt;

@@ -12,7 +12,19 @@ import MyPrompts from './pages/MyPrompts';
 import GeneratePrompt from './pages/GeneratePrompt';
 import SinglePrompt from './pages/SinglePrompt';
 import PrivateRoute from './PrivateRoute';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useEffect } from 'react';
+import { syncUserToFirebase } from './utils/syncUserToFirebase';
 
+const App = () => {
+  const { isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      syncUserToFirebase(user); // ← 🔥 this runs post-login
+    }
+  }, [isAuthenticated, user]);
+  
 function App() {
   return (
     <Router>

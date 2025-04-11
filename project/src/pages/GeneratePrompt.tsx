@@ -220,18 +220,7 @@ const GeneratePrompt = () => {
           citation: citationText,
           createdAt: Timestamp.now()
         };
-        console.log("🧪 Document to be added:", newPrompt);
-        const newPrompt = {
-          userId: user?.sub,
-          prompt: formData.prompt,
-          author: formData.author,
-          date: formData.date,
-          aiModel: model,
-          additionalInfo: formData.additionalInfo,
-          citation: citationText,
-          createdAt: Timestamp.now()
-        };
-        
+               
         console.log('🧪 Attempting to add prompt:', newPrompt); // ⬅️ to dodaj
         
         await addDoc(collection(db, 'prompts'), newPrompt);

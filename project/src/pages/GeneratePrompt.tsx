@@ -205,6 +205,11 @@ const GeneratePrompt = () => {
     setShowCitation(true);
     if (isAuthenticated && user) {
       try {
+        if (!user?.sub || !formData.prompt || !formData.author) {
+          console.warn("⚠️ Missing required fields. Prompt NOT saved.");
+          return;
+        }
+          
         const newPrompt = {
           userId: user.sub,
           prompt: formData.prompt,
@@ -216,7 +221,21 @@ const GeneratePrompt = () => {
           createdAt: Timestamp.now()
         };
         console.log("🧪 Document to be added:", newPrompt);
+        const newPrompt = {
+          userId: user?.sub,
+          prompt: formData.prompt,
+          author: formData.author,
+          date: formData.date,
+          aiModel: model,
+          additionalInfo: formData.additionalInfo,
+          citation: citationText,
+          createdAt: Timestamp.now()
+        };
+        
+        console.log('🧪 Attempting to add prompt:', newPrompt); // ⬅️ to dodaj
+        
         await addDoc(collection(db, 'prompts'), newPrompt);
+        
         console.log('✅ Prompt successfully stored in Firestore');
       } catch (error) {
         console.error('❌ Error storing prompt in Firestore:', error);

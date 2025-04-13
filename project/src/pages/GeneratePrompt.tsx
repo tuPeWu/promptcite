@@ -220,7 +220,7 @@ const GeneratePrompt = () => {
           citation: citationText,
           createdAt: Timestamp.now()
         };
-               
+        
         console.log('🧪 Attempting to add prompt:', newPrompt); // ⬅️ to dodaj
         
         await addDoc(collection(db, 'prompts'), newPrompt);

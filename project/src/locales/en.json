@@ -1,0 +1,25 @@
+{
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "instructions": "Instructions",
+      "contact": "Contact",
+      "signin": "Sign in",
+      "signout": "Sign out",
+      "generate": "Generate"
+    },
+    "form": {
+      "prompt": "Paste your prompt here",
+      "author": "Author of the prompt",
+      "date": "Date",
+      "model": "AI Model",
+      "otherModel": "Enter AI model name",
+      "additionalInfo": "Additional info (e.g. version)",
+      "generate": "Generate",
+      "copy": "Copy to clipboard"
+    },
+    "messages": {
+      "noPrompts": "No prompts found. Start generating some!"
+    }
+  }
+  

@@ -1,22 +1,20 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function AccountDropdown() {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation(); // 🔥 Add translation hook
 
   console.log("ENV check:", {
     domain: import.meta.env.VITE_AUTH0_DOMAIN,
     clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
   });
-  
+
   console.log('AccountDropdown rendering...');
-  console.log({
-    isLoading,
-    isAuthenticated,
-    user,
-  });
+  console.log({ isLoading, isAuthenticated, user });
 
   if (isLoading) {
     console.log('Auth0 is still loading...');
@@ -30,7 +28,7 @@ export default function AccountDropdown() {
         className="text-sm px-4 py-2 rounded hover:underline"
         onClick={() => loginWithRedirect()}
       >
-        Sign in
+        {t('account.signin')} {/* 🔍 i18n key */}
       </button>
     );
   }
@@ -61,14 +59,14 @@ export default function AccountDropdown() {
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            Settings
+            {t('account.settings')}
           </Link>
           <Link
             to="/my-prompts"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            My Prompts
+            {t('account.myPrompts')}
           </Link>
           <button
             className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
@@ -76,7 +74,7 @@ export default function AccountDropdown() {
               logout({ logoutParams: { returnTo: window.location.origin } })
             }
           >
-            Log out
+            {t('account.logout')}
           </button>
         </div>
       )}

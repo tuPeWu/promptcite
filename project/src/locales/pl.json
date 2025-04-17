@@ -1,0 +1,25 @@
+{
+    "nav": {
+      "home": "Strona główna",
+      "about": "O projekcie",
+      "instructions": "Instrukcje",
+      "contact": "Kontakt",
+      "signin": "Zaloguj się",
+      "signout": "Wyloguj się",
+      "generate": "Generuj"
+    },
+    "form": {
+      "prompt": "Wklej swój prompt tutaj",
+      "author": "Autor promptu",
+      "date": "Data",
+      "model": "Model AI",
+      "otherModel": "Wprowadź nazwę modelu AI",
+      "additionalInfo": "Dodatkowe informacje (np. wersja)",
+      "generate": "Generuj",
+      "copy": "Skopiuj do schowka"
+    },
+    "messages": {
+      "noPrompts": "Brak promptów. Zacznij generować cytaty!"
+    }
+  }
+  

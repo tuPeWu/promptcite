@@ -221,7 +221,19 @@ const GeneratePrompt = () => {
           createdAt: Timestamp.now()
         };
         
-        console.log('🧪 Attempting to add prompt:', newPrompt); // ⬅️ to dodaj
+        console.log('🧪 Attempting to add prompt:', newPrompt); 
+
+        console.log("🧪 Attempting to write to Firestore:", {
+          userId: user?.sub,
+          prompt: formData.prompt,
+          author: formData.author,
+          date: formData.date,
+          aiModel: model,
+          additionalInfo: formData.additionalInfo,
+          citation: citationText,
+          createdAt: Timestamp.now()
+        });
+        
         
         await addDoc(collection(db, 'prompts'), newPrompt);
         

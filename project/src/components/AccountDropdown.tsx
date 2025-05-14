@@ -6,34 +6,20 @@ import { useTranslation } from 'react-i18next';
 export default function AccountDropdown() {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation(); // 🔥 Add translation hook
+  const { t } = useTranslation(); 
 
-  console.log("ENV check:", {
-    domain: import.meta.env.VITE_AUTH0_DOMAIN,
-    clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
-  });
-
-  console.log('AccountDropdown rendering...');
-  console.log({ isLoading, isAuthenticated, user });
-
-  if (isLoading) {
-    console.log('Auth0 is still loading...');
-    return null;
-  }
+  if (isLoading) return null;
 
   if (!isAuthenticated || !user) {
-    console.log('User is NOT authenticated.');
     return (
       <button
         className="text-sm px-4 py-2 rounded hover:underline"
         onClick={() => loginWithRedirect()}
       >
-        {t('account.signin')} {/* 🔍 i18n key */}
+        {t('account.signin', 'Sign in')}
       </button>
     );
   }
-
-  console.log('User IS authenticated:', user);
 
   return (
     <div className="relative inline-block text-left">
@@ -59,22 +45,23 @@ export default function AccountDropdown() {
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            {t('account.settings')}
+            {t('account.settings', 'Settings')}
           </Link>
           <Link
             to="/my-prompts"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            {t('account.myPrompts')}
+            {t('account.myPrompts', 'My Prompts')}
           </Link>
           <button
             className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-            onClick={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
-            }
+            onClick={() => {
+              setIsOpen(false);
+              logout({ logoutParams: { returnTo: window.location.origin } });
+            }}
           >
-            {t('account.logout')}
+            {t('account.logout', 'Log out')}
           </button>
         </div>
       )}

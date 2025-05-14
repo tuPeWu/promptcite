@@ -1,25 +1,30 @@
 {
-    "nav": {
-      "home": "Strona główna",
-      "about": "O projekcie",
-      "instructions": "Instrukcje",
-      "contact": "Kontakt",
-      "signin": "Zaloguj się",
-      "signout": "Wyloguj się",
-      "generate": "Generuj"
-    },
-    "form": {
-      "prompt": "Wklej swój prompt tutaj",
-      "author": "Autor promptu",
-      "date": "Data",
-      "model": "Model AI",
-      "otherModel": "Wprowadź nazwę modelu AI",
-      "additionalInfo": "Dodatkowe informacje (np. wersja)",
-      "generate": "Generuj",
-      "copy": "Skopiuj do schowka"
-    },
-    "messages": {
-      "noPrompts": "Brak promptów. Zacznij generować cytaty!"
-    }
+  "nav": {
+    "home": "Strona główna",
+    "about": "O stronie",
+    "instructions": "Instrukcje",
+    "contact": "Kontakt",
+    "signin": "Zaloguj się",
+    "signout": "Wyloguj się",
+    "generate": "Generuj"
+  },
+  "form": {
+    "prompt": "Wklej tutaj swój prompt",
+    "author": "Autor promptu",
+    "date": "Data",
+    "model": "Model AI",
+    "otherModel": "Wpisz nazwę modelu AI",
+    "additionalInfo": "Dodatkowe informacje (np. wersja modelu AI)",
+    "generate": "Generuj",
+    "copy": "Kopiuj do schowka"
+  },
+  "messages": {
+    "noPrompts": "Nie znaleziono promptów. Zacznij generować!"
+  },
+  "account": {
+    "settings": "Ustawienia",
+    "myPrompts": "Moje prompty",
+    "logout": "Wyloguj się",
+    "signin": "Zaloguj się"
   }
-  
+}

@@ -4,7 +4,11 @@ import AccountDropdown from './AccountDropdown';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
-  const { t } = useTranslation(); // ⬅️ useTranslation inside the component you're translating
+  const { t, i18n } = useTranslation();
+
+  const handleChangeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
 
   return (
     <header className="bg-white shadow-sm">
@@ -25,6 +29,20 @@ const Header = () => {
         </div>
 
         <div className="flex items-center space-x-4">
+          {/* 🔤 Language Switcher */}
+          <button
+            onClick={() => handleChangeLanguage('en')}
+            className={`px-2 py-1 rounded text-sm ${i18n.language === 'en' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
+          >
+            EN
+          </button>
+          <button
+            onClick={() => handleChangeLanguage('pl')}
+            className={`px-2 py-1 rounded text-sm ${i18n.language === 'pl' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
+          >
+            PL
+          </button>
+
           <AccountDropdown />
         </div>
       </nav>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AccountDropdown from './AccountDropdown';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, useI18n } from 'react-i18next';
 
 const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const i18n = useI18n();
 
   const handleChangeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -27,7 +28,6 @@ const Header = () => {
             </Link>
           </div>
         </div>
-
         <div className="flex items-center space-x-4">
           {/* 🔤 Language Switcher */}
           <button
@@ -42,7 +42,6 @@ const Header = () => {
           >
             PL
           </button>
-
           <AccountDropdown />
         </div>
       </nav>

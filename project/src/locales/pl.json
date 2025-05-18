@@ -1,12 +1,12 @@
 {
   "nav": {
     "home": "Strona główna",
-    "about": "O stronie",
+    "about": "O projekcie",
     "instructions": "Instrukcje",
     "contact": "Kontakt",
     "signin": "Zaloguj się",
     "signout": "Wyloguj się",
-    "generate": "Generuj"
+    "generate": "Wygeneruj"
   },
   "form": {
     "prompt": "Wklej tutaj swój prompt",
@@ -14,9 +14,9 @@
     "date": "Data",
     "model": "Model AI",
     "otherModel": "Wpisz nazwę modelu AI",
-    "additionalInfo": "Dodatkowe informacje (np. wersja modelu AI)",
-    "generate": "Generuj",
-    "copy": "Kopiuj do schowka"
+    "additionalInfo": "Dodatkowe informacje (np. wersja)",
+    "generate": "Wygeneruj",
+    "copy": "Skopiuj do schowka"
   },
   "messages": {
     "noPrompts": "Nie znaleziono promptów. Zacznij generować!"
@@ -26,5 +26,85 @@
     "myPrompts": "Moje prompty",
     "logout": "Wyloguj się",
     "signin": "Zaloguj się"
+  },
+  "about": {
+    "title": "PromptCite - Zautomatyzowana bibliografia promptów AI",
+    "intro": "📖 PromptCite to repozytorium do automatycznego katalogowania i organizowania promptów używanych w badaniach naukowych i twórczości z AI.",
+    "goal": "🎯 Cel: Stworzenie w pełni zautomatyzowanego generatora bibliografii promptów („promptograficznego indeksu”), umożliwiającego łatwe archiwizowanie, udostępnianie i cytowanie promptów AI w publikacjach naukowych, prezentacjach biznesowych, raportach i dokumentacji prac artystycznych."
+  },
+  "signin": {
+    "title": {
+      "login": "Zaloguj się do swojego konta",
+      "signup": "Utwórz konto"
+    },
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "continueWith": {
+      "google": "Kontynuuj z Google",
+      "github": "Kontynuuj z GitHub",
+      "facebook": "Kontynuuj z Facebook"
+    },
+    "submit": {
+      "signin": "Zaloguj się",
+      "signup": "Zarejestruj się"
+    },
+    "toggle": {
+      "haveAccount": "Masz już konto?",
+      "noAccount": "Nie masz jeszcze konta?",
+      "signin": "Zaloguj się",
+      "signup": "Zarejestruj się"
+    },
+    "loading": "Ładowanie...",
+    "alreadySignedIn": "Jesteś już zalogowany.",
+    "error": {
+      "general": "Wystąpił błąd podczas logowania.",
+      "passwordMismatch": "Hasła się nie zgadzają"
+    },
+    "or": "lub"
+  },
+  "generatePrompt": {
+    "title": "Wklej tutaj swój prompt",
+    "author": "Autor promptu",
+    "date": "Data",
+    "model": "Model AI",
+    "otherModelPlaceholder": "Wpisz nazwę modelu AI",
+    "additionalInfo": "DODATKOWO: Informacje dodatkowe (np. wersja modelu AI)",
+    "generateButton": "WYGNERUJ",
+    "citationTitle": "Wygenerowany cytat",
+    "copyButton": "Skopiuj do schowka"
+  },
+  "singlePrompt": {
+    "title": "Edytuj prompt",
+    "loading": "Ładowanie...",
+    "notFound": "Nie znaleziono promptu.",
+    "regenerate": "PONOWNIE WYGNERUJ",
+    "generatedCitation": "Wygenerowany cytat",
+    "alerts": {
+      "updated": "✅ Prompt został zaktualizowany i ponownie wygenerowany!",
+      "error": "❌ Błąd podczas aktualizacji promptu:"
+    }
+  },
+  "myPrompts": {
+    "content": "..."
+  },
+  "instructions": {
+    "content": "..."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "name": "Paweł Wolski, dr hab.",
+    "institution": "Akademia Sztuki w Szczecinie / Uniwersytet Szczeciński",
+    "links": {
+      "profile": "https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab",
+      "linkedin": "www.linkedin.com/in/pawelwolski-akademiasztuki",
+      "github": "https://github.com/tuPeWu/promptograf"
+    },
+    "email": {
+      "ux": "p.wolski.ux@akademiasztuki.eu",
+      "usz": "pawel.wolski@usz.edu.pl"
+    },
+    "findMe": "Znajdź mnie na:",
+    "contactMe": "Skontaktuj się ze mną:"
   }
 }

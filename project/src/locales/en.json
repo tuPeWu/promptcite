@@ -26,5 +26,85 @@
     "myPrompts": "My Prompts",
     "logout": "Log out",
     "signin": "Sign in"
+  },
+  "about": {
+    "title": "PromptCite - Automated AI Prompt Bibliography",
+    "intro": "📖 PromptCite is a repository for the automatic cataloging and organization of prompts used in academic research and creative work with AI.",
+    "goal": "🎯 Goal: To create a fully automated prompt bibliography generator (\"promptographic index\") that enables easy archiving, sharing, and citation of AI prompts in academic publications, business presentations, reports, and documentation of artistic work."
+  },
+  "signin": {
+    "title": {
+      "login": "Sign in to your account",
+      "signup": "Create an account"
+    },
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "continueWith": {
+      "google": "Continue with Google",
+      "github": "Continue with GitHub",
+      "facebook": "Continue with Facebook"
+    },
+    "submit": {
+      "signin": "Sign in",
+      "signup": "Sign up"
+    },
+    "toggle": {
+      "haveAccount": "Already have an account?",
+      "noAccount": "Don't have an account?",
+      "signin": "Sign in",
+      "signup": "Sign up"
+    },
+    "loading": "Loading...",
+    "alreadySignedIn": "You're already signed in.",
+    "error": {
+      "general": "An error occurred while signing in.",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "or": "or"
+  },
+  "generatePrompt": {
+    "title": "Paste your prompt here",
+    "author": "Author of the prompt",
+    "date": "Date",
+    "model": "AI Model",
+    "otherModelPlaceholder": "Enter AI model name",
+    "additionalInfo": "OPTIONAL: Additional info (e.g., version of the AI Model)",
+    "generateButton": "GENERATE",
+    "citationTitle": "Generated Citation",
+    "copyButton": "Copy to clipboard"
+  },
+  "singlePrompt": {
+    "title": "Edit Prompt",
+    "loading": "Loading...",
+    "notFound": "Prompt not found.",
+    "regenerate": "RE-GENERATE",
+    "generatedCitation": "Generated Citation",
+    "alerts": {
+      "updated": "✅ Prompt updated and citation regenerated!",
+      "error": "❌ Failed to update prompt:"
+    }
+  },
+  "myPrompts": {
+    "content": "..."
+  },
+  "instructions": {
+    "content": "..."
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Paweł Wolski, PhD",
+    "institution": "Akademia Sztuki w Szczecinie / Uniwersytet Szczeciński",
+    "links": {
+      "profile": "https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab",
+      "linkedin": "www.linkedin.com/in/pawelwolski-akademiasztuki",
+      "github": "https://github.com/tuPeWu/promptograf"
+    },
+    "email": {
+      "ux": "p.wolski.ux@akademiasztuki.eu",
+      "usz": "pawel.wolski@usz.edu.pl"
+    },
+    "findMe": "Find me at:",
+    "contactMe": "Contact me at:"
   }
 }

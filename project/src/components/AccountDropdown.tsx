@@ -16,7 +16,7 @@ export default function AccountDropdown() {
         className="text-sm px-4 py-2 rounded hover:underline"
         onClick={() => loginWithRedirect()}
       >
-        {t('account.signin', 'Sign in')}
+        {t('account.signin')}
       </button>
     );
   }
@@ -45,14 +45,14 @@ export default function AccountDropdown() {
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            {t('account.settings', 'Settings')}
+            {t('account.settings')}
           </Link>
           <Link
             to="/my-prompts"
             className="block px-4 py-2 text-sm hover:bg-gray-100"
             onClick={() => setIsOpen(false)}
           >
-            {t('account.myPrompts', 'My Prompts')}
+            {t('account.myPrompts')}
           </Link>
           <button
             className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
@@ -61,7 +61,7 @@ export default function AccountDropdown() {
               logout({ logoutParams: { returnTo: window.location.origin } });
             }}
           >
-            {t('account.logout', 'Log out')}
+            {t('account.logout')}
           </button>
         </div>
       )}

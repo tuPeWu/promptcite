@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AccountDropdown from './AccountDropdown';
-import { useTranslation, useI18n } from 'react-i18next';
+import { useTranslation, useI18nextInstance } from 'react-i18next';
 
 const Header = () => {
   const { t } = useTranslation();
-  const i18n = useI18n();
+  const i18n = useI18nextInstance();
 
   const handleChangeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);

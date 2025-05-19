@@ -27,10 +27,15 @@
     "logout": "Log out",
     "signin": "Sign in"
   },
+  "home": {
+    "title": "Instantly generate bibliographic entries",
+    "subtitle": "Track, share, and cite your AI-driven ideas",
+    "cta": "Start citing"
+  },
   "about": {
     "title": "PromptCite - Automated AI Prompt Bibliography",
-    "intro": "📖 PromptCite is a repository for the automatic cataloging and organization of prompts used in academic research and creative work with AI.",
-    "goal": "🎯 Goal: To create a fully automated prompt bibliography generator (\"promptographic index\") that enables easy archiving, sharing, and citation of AI prompts in academic publications, business presentations, reports, and documentation of artistic work."
+    "intro": "PromptCite is a tool designed for the automatic cataloging, organizing, and bibliographic description of AI prompts used in scientific, educational, and creative activities.",
+    "goal": "The PromptCite project aims to raise awareness among users about the ethical implications of using AI tools and to normalize everyday interaction with this technology in science, work, art, and daily life." 
   },
   "signin": {
     "title": {
@@ -89,7 +94,31 @@
     "content": "..."
   },
   "instructions": {
-    "content": "..."
+    "title": "How to Use Prompt-Cite",
+    "gettingStarted": {
+      "heading": "Getting Started",
+      "steps": [
+        "Click the \"Start citing\" button on the homepage or navigate to the citation generator.",
+        "Paste your AI prompt into the text box.",
+        "Fill in your name as the author (or it will be auto-filled if you're signed in).",
+        "Select the AI model you used from the provided options.",
+        "Add any additional information about the model version if relevant.",
+        "Click \"GENERATE\" to create your citation."
+      ]
+    },
+    "usingCitation": {
+      "heading": "Using Your Citation",
+      "items": [
+        "Copy the generated citation text directly into your academic paper, presentation, or documentation.",
+        "Use the QR code to quickly share access to your prompt and its metadata.",
+        "Access your saved prompts anytime through your account dashboard."
+      ]
+    },
+    "format": {
+      "heading": "Citation Format",
+      "description": "Citations are generated in the following format:",
+      "example": "[Author], \"First five words...\", [AI Model], [Optional Info], [Date], [Repository Link]"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -101,7 +130,7 @@
       "github": "https://github.com/tuPeWu/promptograf"
     },
     "email": {
-      "ux": "p.wolski.ux@akademiasztuki.eu",
+      "as": "p.wolski.ux@akademiasztuki.eu",
       "usz": "pawel.wolski@usz.edu.pl"
     },
     "findMe": "Find me at:",

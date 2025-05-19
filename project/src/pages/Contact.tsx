@@ -1,56 +1,93 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const Contact = () => {
+const Contact: React.FC = () => {
+  const { t } = useTranslation();
+
+  // pull social links as objects
+  const profile = t('contact.profile', { returnObjects: true }) as {
+    url: string;
+    text: string;
+  };
+  const linkedin = t('contact.social.linkedin', { returnObjects: true }) as {
+    url: string;
+    text: string;
+  };
+  const github = t('contact.social.github', { returnObjects: true }) as {
+    url: string;
+    text: string;
+  };
+
+  const emails = t('contact.emails', { returnObjects: true }) as {
+    as: string;
+    usz: string;
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-6">Contact</h1>
+      <h1 className="text-3xl font-bold mb-6">
+        {t('contact.title')}
+      </h1>
+
       <div className="prose prose-lg">
-        <p className="text-xl font-semibold">Paweł Wolski, PhD</p>
+        <p className="text-xl font-semibold">
+          {t('contact.name')}
+        </p>
         <p className="mb-6">
-          Akademia Sztuki w Szczecinie / Uniwersytet Szczeciński
+          {t('contact.institution')}
           <br />
           <a
-            href="https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab"
+            href={profile.url}
             className="text-blue-600 hover:text-blue-800"
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab
+            {profile.text}
           </a>
         </p>
 
-        <h2 className="text-2xl font-semibold mb-4">Find me at:</h2>
+        <h2 className="text-2xl font-semibold mb-4">
+          {t('contact.findMe')}
+        </h2>
         <ul className="list-none p-0">
           <li>
             <a
-              href="https://www.linkedin.com/in/pawelwolski-akademiasztuki"
+              href={linkedin.url}
               className="text-blue-600 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
             >
-              www.linkedin.com/in/pawelwolski-akademiasztuki
+              {linkedin.text}
             </a>
           </li>
           <li>
             <a
-              href="https://github.com/tuPeWu/promptograf"
+              href={github.url}
               className="text-blue-600 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://github.com/tuPeWu/promptograf
+              {github.text}
             </a>
           </li>
         </ul>
 
-        <h2 className="text-2xl font-semibold mt-6 mb-4">Contact me at:</h2>
+        <h2 className="text-2xl font-semibold mt-6 mb-4">
+          {t('contact.contactMe')}
+        </h2>
         <p>
-          <a href="mailto:p.wolski.ux@akademiasztuki.eu" className="text-blue-600 hover:text-blue-800">
-            p.wolski.ux@akademiasztuki.eu
+          <a
+            href={`mailto:${emails.ux}`}
+            className="text-blue-600 hover:text-blue-800"
+          >
+            {emails.ux}
           </a>
           <br />
-          <a href="mailto:pawel.wolski@usz.edu.pl" className="text-blue-600 hover:text-blue-800">
-            pawel.wolski@usz.edu.pl
+          <a
+            href={`mailto:${emails.usz}`}
+            className="text-blue-600 hover:text-blue-800"
+          >
+            {emails.usz}
           </a>
         </p>
       </div>

@@ -27,10 +27,16 @@
     "logout": "Wyloguj się",
     "signin": "Zaloguj się"
   },
+  "home": {
+    "title": "Zautomatyzowana bibliografia promptów AI",
+    "subtitle": "Cytuj AI - twórz przejrzyste bibliografie!",
+    "cta": "Rozpocznij cytowanie"
+},
   "about": {
     "title": "PromptCite - Zautomatyzowana bibliografia promptów AI",
-    "intro": "📖 PromptCite to repozytorium do automatycznego katalogowania i organizowania promptów używanych w badaniach naukowych i twórczości z AI.",
-    "goal": "🎯 Cel: Stworzenie w pełni zautomatyzowanego generatora bibliografii promptów („promptograficznego indeksu”), umożliwiającego łatwe archiwizowanie, udostępnianie i cytowanie promptów AI w publikacjach naukowych, prezentacjach biznesowych, raportach i dokumentacji prac artystycznych."
+    "intro": "PromptCite stanowi narzędzie służące do automatycznego katalogowania, organizowania i opisu bibliograficznego promptów AI używanych w działalności naukowej, edukacyjnej i twórczej.",
+    "goal": "Projekt PromptCite ma na celu uświadomienie użytkownikom etycznych implikacji korzystania z narzędzi AI oraz normalizację codziennego obcowania z tą technologią w nauce, pracy, sztuce i w codziennym życiu"
+
   },
   "signin": {
     "title": {
@@ -89,11 +95,39 @@
     "content": "..."
   },
   "instructions": {
-    "content": "..."
+  
+    "title": "Jak korzystać z Promptcite",
+    "gettingStarted": {
+      "heading": "Zaczynamy",
+      "steps": [
+        "Kliknij przycisk „Rozpocznij cytowanie” na stronie głównej lub przejdź do generatora cytowań na pasku górnym.",
+        "Wklej swój prompt AI do pola tekstowego.",
+        "Podaj dane autora/autorki promptu (domyślna wartość to imię i nazwisko podane podczas logowania).",
+        "Wpisz lub wybierz za pomocą ikony kalendarza datę użycia promptu (domyślna data to dzień bieżący)",
+        "Wybierz z listy nazwę użytego przez Ciebie modelu AI. Jeśli nie ma go na liście, zaznacz opcję „Inny” i wpisz jego nazwę w polu tekstowym.",
+        "W wolnym polu podaj wszelkie dodatkowe informacje (wersja modelu AI, informację o reiteracji wyniku, liczbę prób w procesie prompt engineering itd.).",
+        "Kliknij „GENERUJ”, aby utworzyć cytowanie."
+      ]
+    },
+    "usingCitation": {
+      "heading": "Korzystanie z cytowania",
+      "items": [
+        "Po naciśnięciu przycisku „GENERUJ” Twój cytat/opis bibliograficzny promptu pojawi się w prawym górnym rogu ekranu.",
+        "Skopiuj wygenerowany opis bibliograficzny promptu bezpośrednio do pracy naukowej, prezentacji lub dokumentacji.",
+        "Użyj kodu QR, aby szybko udostępnić dostęp do prompta i jego metadanych.",
+        "Uzyskaj dostęp do zapisanych promptów w dowolnym momencie w panelu użytkownika."
+      ]
+    },
+    "format": {
+      "heading": "Format cytowania",
+      "description": "Cytowania są generowane w następującym formacie:",
+      "example": "[Autor], „Pierwszych pięć słów promptu…”, [model AI], [Dodatkowe informacje], [Data], [Link do repozytorium]"
+    }
   },
+
   "contact": {
     "title": "Kontakt",
-    "name": "Paweł Wolski, dr hab.",
+    "name": "dr hab. Paweł Wolski, prof. AS",
     "institution": "Akademia Sztuki w Szczecinie / Uniwersytet Szczeciński",
     "links": {
       "profile": "https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab",
@@ -101,7 +135,7 @@
       "github": "https://github.com/tuPeWu/promptograf"
     },
     "email": {
-      "ux": "p.wolski.ux@akademiasztuki.eu",
+      "as": "p.wolski.ux@akademiasztuki.eu",
       "usz": "pawel.wolski@usz.edu.pl"
     },
     "findMe": "Znajdź mnie na:",

@@ -13,12 +13,12 @@ const Home: React.FC = () => {
         className="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-10"
         style={{ 
           backgroundImage: "url('/logo.png')",
-          transform: "translate(7%, -10%)"  
+          transform: "translate(7%, -5%)"  
         }}
       ></div>
 
       {/* ✅ Foreground content */}
-      <div className="relative z-10 text-center space-y-0 max-w-2xl px-4 mt-[-450px]">
+      <div className="relative z-10 text-center space-y-0 max-w-2xl px-4 mt-[-300px]">
         <h1
           className="text-4xl font-bold text-gray-900 sm:text-5xl mb-8"
           dangerouslySetInnerHTML={{ __html: t('home.title') }}

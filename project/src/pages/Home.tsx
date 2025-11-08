@@ -20,7 +20,8 @@ const Home: React.FC = () => {
           {t('home.title')}
         </h1>
         <p className="text-xl text-gray-600 sm:text-2xl">
-          {t('home.subtitle')}
+          Track, share, and cite<br />
+          your AI-driven ideas!
         </p>
         <button
           onClick={() => navigate('/generate')}

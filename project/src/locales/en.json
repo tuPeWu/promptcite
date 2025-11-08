@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": "Home",
+    "home": "PromptCite",
     "about": "About",
     "instructions": "Instructions",
     "contact": "Contact",
@@ -28,8 +28,7 @@
     "signin": "Sign in"
   },
   "home": {
-    "title": "Instantly generate bibliographic entries",
-    "subtitle": "Track, share, and cite your AI-driven ideas",
+    "title": "Track, share, and cite <br/> your AI-driven ideas!",
     "cta": "Start citing"
   },
   "about": {

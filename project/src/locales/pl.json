@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": "Strona główna",
+    "home": "PromptCite",
     "about": "O projekcie",
     "instructions": "Instrukcje",
     "contact": "Kontakt",
@@ -28,9 +28,8 @@
     "signin": "Zaloguj się"
   },
   "home": {
-    "title": "Zautomatyzowana bibliografia promptów AI",
-    "subtitle": "Cytuj AI - twórz przejrzyste bibliografie!",
-    "cta": "Rozpocznij cytowanie"
+    "title": "Bibliografia <br/> Twoich promptów AI",
+    "cta": "CYTUJ!"
 },
   "about": {
     "title": "PromptCite - Zautomatyzowana bibliografia promptów AI",

@@ -1,16 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Quote } from 'lucide-react';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-4">
-      <div className="text-center space-y-4 max-w-2xl">
-        <Quote size={48} className="mx-auto text-blue-600" />
+    <div className="relative w-screen h-screen bg-white flex flex-col items-center justify-center overflow-hidden">
+      {/* ✅ Fullscreen background logo */}
+      <div
+        className="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-10"
+        style={{ backgroundImage: "url('/logo.png')" }}
+      ></div>
+
+      {/* ✅ Foreground content */}
+      <div className="relative z-10 text-center space-y-4 max-w-2xl px-4">
         <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
           {t('home.title')}
         </h1>

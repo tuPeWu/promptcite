@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
           <br />
           <a
             href={profile.url}
-            className="text-blue-600 hover:text-blue-800"
+            className="text-gray-900 hover:text-black"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
           <li>
             <a
               href={linkedin.url}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-gray-900 hover:text-black"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
           <li>
             <a
               href={github.url}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-gray-900 hover:text-black"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -78,14 +78,14 @@ const Contact: React.FC = () => {
         <p>
           <a
             href={`mailto:${emails.ux}`}
-            className="text-blue-600 hover:text-blue-800"
+            className="text-gray-900 hover:text-black"
           >
             {emails.ux}
           </a>
           <br />
           <a
             href={`mailto:${emails.usz}`}
-            className="text-blue-600 hover:text-blue-800"
+            className="text-gray-900 hover:text-black"
           >
             {emails.usz}
           </a>

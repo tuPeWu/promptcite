@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         </p>
         <button
           onClick={() => navigate('/generate')}
-          className="mt-8 px-8 py-4 bg-blue-600 text-white rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+          className="mt-8 px-8 py-4 bg-gray-900 text-white rounded-lg text-lg font-semibold hover:bg-black transition-colors"
         >
           {t('home.cta')}
         </button>

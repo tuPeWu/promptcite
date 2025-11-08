@@ -49,7 +49,7 @@ const Header: React.FC = () => {
             className={`
               px-2 py-1 rounded text-sm font-medium
               ${i18n.language === 'en'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-gray-900 text-white'
                 : 'bg-gray-200 text-gray-700'
               }
             `}
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
             className={`
               px-2 py-1 rounded text-sm font-medium
               ${i18n.language === 'pl'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-gray-900 text-white'
                 : 'bg-gray-200 text-gray-700'
               }
             `}

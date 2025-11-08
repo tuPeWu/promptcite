@@ -299,7 +299,7 @@ const SignIn = () => {
           )}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black"
           >
             {isSignUp ? 'Sign up' : 'Sign in'}
           </button>
@@ -310,7 +310,7 @@ const SignIn = () => {
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-blue-600 hover:text-blue-800"
+            className="text-gray-900 hover:text-black"
           >
             {isSignUp ? 'Sign in' : 'Sign up'}
           </button>

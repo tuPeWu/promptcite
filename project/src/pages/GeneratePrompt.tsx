@@ -47,7 +47,7 @@ const GeneratePrompt = () => {
         console.log('✅ Prompt saved with ID:', docRef.id);
 
         // Now generate the citation with the actual Firestore document ID
-        const repositoryLink = `${window.location.origin}/prompts/${docRef.id}`;
+        const repositoryLink = `${window.location.origin}/cite/${docRef.id}`;
         const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
           formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
         }, ${formData.date}, ${repositoryLink}`;
@@ -66,7 +66,7 @@ const GeneratePrompt = () => {
       }
     } else {
       // For non-authenticated users, generate citation without saving
-      const repositoryLink = `${window.location.origin}/prompts/${Date.now()}`;
+      const repositoryLink = `${window.location.origin}/cite/${Date.now()}`;
       const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
         formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
       }, ${formData.date}, ${repositoryLink}`;

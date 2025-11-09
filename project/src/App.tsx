@@ -11,6 +11,7 @@ import Settings from './pages/Settings';
 import MyPrompts from './pages/MyPrompts';
 import GeneratePrompt from './pages/GeneratePrompt';
 import SinglePrompt from './pages/SinglePrompt';
+import ViewCitation from './pages/ViewCitation';
 import PrivateRoute from './PrivateRoute';
 import { useAuth0 } from '@auth0/auth0-react';
 import { syncUserToFirebase } from './utils/syncUserToFirebase';
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/generate" element={<GeneratePrompt />} />
+            <Route path="/cite/:id" element={<ViewCitation />} />
             <Route path="/prompts/:id" element={<SinglePrompt />} />
             <Route
               path="/settings"

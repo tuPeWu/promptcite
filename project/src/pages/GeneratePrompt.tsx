@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { db } from '../firebase';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, Timestamp } from 'firebase/firestore';
 
 const GeneratePrompt = () => {
   const [formData, setFormData] = useState({
@@ -21,52 +21,57 @@ const GeneratePrompt = () => {
     e.preventDefault();
     const firstFiveWords = formData.prompt.split(' ').slice(0, 5).join(' ');
     const model = formData.aiModel === 'Other' ? formData.otherModel : formData.aiModel;
-    const repositoryLink = `https://prompt-cite.com/prompts/${Date.now()}`;
-    const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
-      formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
-    }, ${formData.date}, ${repositoryLink}`;
-    setCitation(citationText);
-    setShowCitation(true);
+
     if (isAuthenticated && user) {
       try {
         if (!user?.sub || !formData.prompt || !formData.author) {
           console.warn("⚠️ Missing required fields. Prompt NOT saved.");
           return;
         }
-          
-        const newPrompt = {
+
+        console.log('🧪 Attempting to save prompt to Firestore...');
+
+        // First, save the prompt to get the auto-generated Firestore ID
+        const docRef = await addDoc(collection(db, 'prompts'), {
           userId: user.sub,
           prompt: formData.prompt,
           author: formData.author,
           date: formData.date,
           aiModel: model,
           additionalInfo: formData.additionalInfo,
-          citation: citationText,
+          citation: '', // Temporary empty citation
           createdAt: Timestamp.now(),
-          deleted: false 
-        };
-        
-        
-        console.log('🧪 Attempting to add prompt:', newPrompt); 
-
-        console.log("🧪 Attempting to write to Firestore:", {
-          userId: user?.sub,
-          prompt: formData.prompt,
-          author: formData.author,
-          date: formData.date,
-          aiModel: model,
-          additionalInfo: formData.additionalInfo,
-          citation: citationText,
-          createdAt: Timestamp.now()
+          deleted: false
         });
-        
-        
-        await addDoc(collection(db, 'prompts'), newPrompt);
-        
-        console.log('✅ Prompt successfully stored in Firestore');
+
+        console.log('✅ Prompt saved with ID:', docRef.id);
+
+        // Now generate the citation with the actual Firestore document ID
+        const repositoryLink = `https://prompt-cite.com/prompts/${docRef.id}`;
+        const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
+          formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
+        }, ${formData.date}, ${repositoryLink}`;
+
+        // Update the document with the correct citation
+        await updateDoc(doc(db, 'prompts', docRef.id), {
+          citation: citationText
+        });
+
+        console.log('✅ Citation updated with correct link');
+
+        setCitation(citationText);
+        setShowCitation(true);
       } catch (error) {
         console.error('❌ Error storing prompt in Firestore:', error);
       }
+    } else {
+      // For non-authenticated users, generate citation without saving
+      const repositoryLink = `https://prompt-cite.com/prompts/${Date.now()}`;
+      const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
+        formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
+      }, ${formData.date}, ${repositoryLink}`;
+      setCitation(citationText);
+      setShowCitation(true);
     }
   };
 

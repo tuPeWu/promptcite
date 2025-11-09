@@ -48,7 +48,7 @@ const MyPrompts = () => {
   );
 
   const handleEdit = (id: string) => {
-    navigate(`/my-prompts/${id}`);
+    navigate(`/prompts/${id}`);
   };
 
   const handleDelete = async (id: string) => {

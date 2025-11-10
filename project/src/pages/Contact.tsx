@@ -34,7 +34,9 @@ const Contact: React.FC = () => {
           {t('contact.name')}
         </p>
         <p className="mb-6">
-          {t('contact.institution')}
+          {profile.text}
+          <br />
+          {university.text}
         </p>
 
         <h2 className="text-2xl font-semibold mb-4">
@@ -49,26 +51,6 @@ const Contact: React.FC = () => {
               rel="noopener noreferrer"
             >
               {linkedin.text}
-            </a>
-          </li>
-          <li className="mb-2">
-            <a
-              href={profile.url}
-              className="text-blue-600 hover:text-blue-800"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {profile.text}
-            </a>
-          </li>
-          <li className="mb-2">
-            <a
-              href={university.url}
-              className="text-blue-600 hover:text-blue-800"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {university.text}
             </a>
           </li>
         </ul>

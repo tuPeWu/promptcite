@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
     text: string;
   };
 
-  const emails = t('contact.emails', { returnObjects: true }) as {
+  const emails = t('contact.email', { returnObjects: true }) as {
     as: string;
     usz: string;
   };

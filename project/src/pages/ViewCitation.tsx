@@ -18,11 +18,15 @@ const ViewCitation = () => {
       }
 
       try {
+        console.log('🔍 Fetching citation with ID:', id);
         const docRef = doc(db, 'prompts', id);
         const snapshot = await getDoc(docRef);
 
+        console.log('📊 Snapshot exists?', snapshot.exists());
+
         if (snapshot.exists()) {
           const data = snapshot.data();
+          console.log('✅ Citation data retrieved:', data);
           setPromptData(data);
 
           // Generate citation with the actual document ID
@@ -33,10 +37,19 @@ const ViewCitation = () => {
           }, ${data.date}, ${window.location.origin}/cite/${id}`;
           setCitation(citationText);
         } else {
-          console.warn("⚠️ Citation not found");
+          console.warn("⚠️ Citation not found - Document does not exist in Firestore");
+          console.log('Document ID attempted:', id);
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("❌ Error fetching citation:", err);
+        console.error("Error code:", err?.code);
+        console.error("Error message:", err?.message);
+
+        // Check if it's a permission error
+        if (err?.code === 'permission-denied') {
+          console.error("🚫 PERMISSION DENIED - Firestore rules may not be set correctly");
+          console.error("Please check Firestore security rules in Firebase Console");
+        }
       } finally {
         setLoading(false);
       }

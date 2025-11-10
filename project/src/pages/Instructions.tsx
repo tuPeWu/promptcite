@@ -1,36 +1,36 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Instructions = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-6">Jak używać Prompt-Cite</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('instructions.title')}</h1>
       <div className="prose prose-lg space-y-6">
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Rozpoczęcie</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('instructions.gettingStarted.heading')}</h2>
           <ol className="list-decimal pl-6 space-y-4">
-            <li>Kliknij przycisk "Rozpocznij cytowanie" na stronie głównej lub przejdź do generatora cytowań.</li>
-            <li>Wklej swój prompt AI w pole tekstowe.</li>
-            <li>Wpisz swoje nazwisko jako autora (lub zostanie ono automatycznie wypełnione, jeśli jesteś zalogowany).</li>
-            <li>Wybierz model AI, którego używałeś z podanych opcji.</li>
-            <li>Dodaj dodatkowe informacje o wersji modelu, jeśli to istotne.</li>
-            <li>Kliknij "GENERUJ", aby utworzyć swoje cytowanie.</li>
+            {t('instructions.gettingStarted.steps', { returnObjects: true }).map((step: string, index: number) => (
+              <li key={index}>{step}</li>
+            ))}
           </ol>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Korzystanie z cytowania</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('instructions.usingCitation.heading')}</h2>
           <ul className="list-disc pl-6 space-y-4">
-            <li>Skopiuj wygenerowane cytowanie bezpośrednio do swojej pracy naukowej, prezentacji lub dokumentacji.</li>
-            <li>Użyj kodu QR, aby szybko udostępnić dostęp do swojego promptu i jego metadanych.</li>
-            <li>Uzyskaj dostęp do zapisanych promptów w dowolnym momencie przez panel swojego konta.</li>
+            {t('instructions.usingCitation.items', { returnObjects: true }).map((item: string, index: number) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Format cytowania</h2>
-          <p>Cytowania są generowane w następującym formacie:</p>
+          <h2 className="text-2xl font-semibold mb-4">{t('instructions.format.heading')}</h2>
+          <p>{t('instructions.format.description')}</p>
           <pre className="bg-gray-50 p-4 rounded-md">
-            [Autor], "Pierwsze pięć słów...", [Model AI], [Opcjonalne info], [Data], [Link do repozytorium]
+            {t('instructions.format.example')}
           </pre>
         </section>
       </div>

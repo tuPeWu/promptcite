@@ -139,5 +139,21 @@
     },
     "findMe": "Znajdź mnie na:",
     "contactMe": "Skontaktuj się ze mną:"
+  },
+  "viewCitation": {
+    "title": "Opis bibliograf. promptu",
+    "citationLabel": "CYTOWANIE",
+    "copyButton": "Kopiuj cytowanie",
+    "loading": "Ładowanie cytowania...",
+    "notFoundTitle": "Nie znaleziono cytowania",
+    "notFoundMessage": "Żądane cytowanie nie istnieje lub zostało usunięte.",
+    "fields": {
+      "author": "Autor",
+      "prompt": "Prompt",
+      "aiModel": "Model AI",
+      "date": "Data",
+      "additionalInfo": "Dodatkowe informacje",
+      "citationId": "Nr ref."
+    }
   }
 }

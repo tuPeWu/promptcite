@@ -134,5 +134,21 @@
     },
     "findMe": "Find me at:",
     "contactMe": "Contact me at:"
+  },
+  "viewCitation": {
+    "title": "Prompt Citation",
+    "citationLabel": "CITATION",
+    "copyButton": "Copy Citation",
+    "loading": "Loading citation...",
+    "notFoundTitle": "Citation Not Found",
+    "notFoundMessage": "The requested citation does not exist or has been removed.",
+    "fields": {
+      "author": "Author",
+      "prompt": "Prompt",
+      "aiModel": "AI Model",
+      "date": "Date",
+      "additionalInfo": "Additional Information",
+      "citationId": "Citation ID"
+    }
   }
 }

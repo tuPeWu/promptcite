@@ -43,7 +43,7 @@ const SinglePrompt = () => {
     const model = data.aiModel === 'Other' ? data.otherModel : data.aiModel;
     const citationText = `${data.author}, "${firstFiveWords}...", ${model}${
       data.additionalInfo ? `, ${data.additionalInfo}` : ''
-    }, ${data.date}, ${window.location.origin}/prompts/${id}`;
+    }, ${data.date}, ${window.location.origin}/cite/${id}`;
     setCitation(citationText);
   };
 

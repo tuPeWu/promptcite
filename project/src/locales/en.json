@@ -68,12 +68,12 @@
     "or": "or"
   },
   "generatePrompt": {
-    "title": "Paste your prompt here",
-    "author": "Author of the prompt",
-    "date": "Date",
-    "model": "AI Model",
+    "promptLabel": "Paste your prompt here",
+    "authorLabel": "Author of the prompt",
+    "dateLabel": "Date",
+    "modelLabel": "AI Model",
     "otherModelPlaceholder": "Enter AI model name",
-    "additionalInfo": "OPTIONAL: Additional info (e.g., version of the AI Model)",
+    "additionalInfoLabel": "OPTIONAL: Additional info (e.g., version of the AI Model)",
     "generateButton": "GENERATE",
     "citationTitle": "Generated Citation",
     "copyButton": "Copy to clipboard"

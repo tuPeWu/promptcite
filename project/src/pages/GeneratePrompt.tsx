@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { QRCodeSVG } from 'qrcode.react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { db } from '../firebase';
 import { collection, addDoc, updateDoc, doc, Timestamp } from 'firebase/firestore';
 
 const GeneratePrompt = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     prompt: '',
     author: '',
@@ -73,7 +75,7 @@ const GeneratePrompt = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Paste your prompt here
+              {t('generatePrompt.promptLabel')}
             </label>
             <textarea
               required
@@ -84,7 +86,7 @@ const GeneratePrompt = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Author of the prompt
+              {t('generatePrompt.authorLabel')}
             </label>
             <input
               type="text"
@@ -96,7 +98,7 @@ const GeneratePrompt = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Date
+              {t('generatePrompt.dateLabel')}
             </label>
             <input
               type="date"
@@ -108,7 +110,7 @@ const GeneratePrompt = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              AI Model
+              {t('generatePrompt.modelLabel')}
             </label>
             <div className="space-y-2">
               {['ChatGPT', 'Gemini', 'Bielik', 'Other'].map((model) => (
@@ -129,7 +131,7 @@ const GeneratePrompt = () => {
             {formData.aiModel === 'Other' && (
               <input
                 type="text"
-                placeholder="Enter AI model name"
+                placeholder={t('generatePrompt.otherModelPlaceholder')}
                 className="mt-2 w-full p-2 border rounded-md"
                 value={formData.otherModel}
                 onChange={(e) => setFormData({ ...formData, otherModel: e.target.value })}
@@ -138,7 +140,7 @@ const GeneratePrompt = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              OPTIONAL: Additional info (e.g., version of the AI Model)
+              {t('generatePrompt.additionalInfoLabel')}
             </label>
             <input
               type="text"
@@ -151,20 +153,20 @@ const GeneratePrompt = () => {
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
-            GENERATE
+            {t('generatePrompt.generateButton')}
           </button>
         </form>
       </div>
       {showCitation && (
         <div className="hidden md:block w-1/2 mt-8 p-6 bg-gray-50 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Generated Citation</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('generatePrompt.citationTitle')}</h2>
           <div className="bg-white p-4 rounded border mb-4">
             <p className="font-mono">{citation}</p>
             <button
               onClick={() => navigator.clipboard.writeText(citation)}
               className="mt-2 px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 transition-colors"
             >
-              Copy to clipboard
+              {t('generatePrompt.copyButton')}
             </button>
           </div>
           <div className="flex justify-center">

@@ -29,11 +29,11 @@ const Contact: React.FC = () => {
         {t('contact.title')}
       </h1>
 
-      <div className="flex justify-center mb-6">
+      <div className="mb-6">
         <img
           src="/cv%20photo.png"
           alt={t('contact.name')}
-          className="w-48 h-48 rounded-full object-cover shadow-lg"
+          className="w-48 h-48 object-cover shadow-lg"
         />
       </div>
 

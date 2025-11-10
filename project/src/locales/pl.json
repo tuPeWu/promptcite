@@ -69,13 +69,13 @@
     "or": "lub"
   },
   "generatePrompt": {
-    "title": "Wklej tutaj swój prompt",
-    "author": "Autor promptu",
-    "date": "Data",
-    "model": "Model AI",
+    "promptLabel": "Tu wklej swój prompt",
+    "authorLabel": "Autor promptu",
+    "dateLabel": "Data",
+    "modelLabel": "Model AI",
     "otherModelPlaceholder": "Wpisz nazwę modelu AI",
-    "additionalInfo": "DODATKOWO: Informacje dodatkowe (np. wersja modelu AI)",
-    "generateButton": "WYGNERUJ",
+    "additionalInfoLabel": "FAKULTATYWNIE: dodatkowe inf. (np. wersja modelu AI)",
+    "generateButton": "Generuj cytat",
     "citationTitle": "Wygenerowany cytat",
     "copyButton": "Skopiuj do schowka"
   },

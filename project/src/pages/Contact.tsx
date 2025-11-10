@@ -29,6 +29,14 @@ const Contact: React.FC = () => {
         {t('contact.title')}
       </h1>
 
+      <div className="flex justify-center mb-6">
+        <img
+          src="/cv%20photo.png"
+          alt={t('contact.name')}
+          className="w-48 h-48 rounded-full object-cover shadow-lg"
+        />
+      </div>
+
       <div className="prose prose-lg">
         <p className="text-xl font-semibold">
           {t('contact.name')}

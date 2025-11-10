@@ -1,15 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { QRCodeSVG } from 'qrcode.react';
 import { db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
 const ViewCitation = () => {
   const { id } = useParams();
   const { t } = useTranslation();
+  const qrRef = useRef<HTMLDivElement>(null);
   const [promptData, setPromptData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [citation, setCitation] = useState('');
+  const [qrCopied, setQrCopied] = useState(false);
+
+  const copyQRCode = async () => {
+    if (!qrRef.current) return;
+
+    try {
+      const svg = qrRef.current.querySelector('svg');
+      if (!svg) return;
+
+      // Convert SVG to canvas
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const svgData = new XMLSerializer().serializeToString(svg);
+      const img = new Image();
+
+      img.onload = async () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx?.drawImage(img, 0, 0);
+
+        // Convert canvas to blob and copy to clipboard
+        canvas.toBlob(async (blob) => {
+          if (blob) {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]);
+            setQrCopied(true);
+            setTimeout(() => setQrCopied(false), 2000);
+          }
+        });
+      };
+
+      img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+    } catch (err) {
+      console.error('Failed to copy QR code:', err);
+    }
+  };
 
   useEffect(() => {
     const fetchPrompt = async () => {
@@ -94,6 +133,26 @@ const ViewCitation = () => {
           >
             {t('viewCitation.copyButton')}
           </button>
+        </div>
+
+        {/* QR Code Section */}
+        <div className="bg-gray-50 border border-gray-200 p-6 mb-8 rounded-lg">
+          <h2 className="text-sm font-semibold text-gray-600 mb-4">{t('viewCitation.qrCodeLabel')}</h2>
+          <div className="flex flex-col items-center">
+            <div ref={qrRef} className="bg-white p-4 rounded-lg shadow-sm mb-4">
+              <QRCodeSVG
+                value={`${window.location.origin}/cite/${id}`}
+                size={200}
+                level="H"
+              />
+            </div>
+            <button
+              onClick={copyQRCode}
+              className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors"
+            >
+              {qrCopied ? t('viewCitation.qrCopied') : t('viewCitation.copyQRButton')}
+            </button>
+          </div>
         </div>
 
         {/* Bibliographic Information */}

@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
     text: string;
   };
 
-  const emails = t('contact.emails', { returnObjects: true }) as {
+  const emails = t('contact.email', { returnObjects: true }) as {
     as: string;
     usz: string;
   };
@@ -77,10 +77,10 @@ const Contact: React.FC = () => {
         </h2>
         <p>
           <a
-            href={`mailto:${emails.ux}`}
+            href={`mailto:${emails.as}`}
             className="text-blue-600 hover:text-blue-800"
           >
-            {emails.ux}
+            {emails.as}
           </a>
           <br />
           <a

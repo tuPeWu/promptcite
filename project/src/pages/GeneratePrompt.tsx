@@ -22,56 +22,46 @@ const GeneratePrompt = () => {
     const firstFiveWords = formData.prompt.split(' ').slice(0, 5).join(' ');
     const model = formData.aiModel === 'Other' ? formData.otherModel : formData.aiModel;
 
-    if (isAuthenticated && user) {
-      try {
-        if (!user?.sub || !formData.prompt || !formData.author) {
-          console.warn("⚠️ Missing required fields. Prompt NOT saved.");
-          return;
-        }
-
-        console.log('🧪 Attempting to save prompt to Firestore...');
-
-        // First, save the prompt to get the auto-generated Firestore ID
-        const docRef = await addDoc(collection(db, 'prompts'), {
-          userId: user.sub,
-          prompt: formData.prompt,
-          author: formData.author,
-          date: formData.date,
-          aiModel: model,
-          additionalInfo: formData.additionalInfo,
-          citation: '', // Temporary empty citation
-          createdAt: Timestamp.now(),
-          deleted: false
-        });
-
-        console.log('✅ Prompt saved with ID:', docRef.id);
-
-        // Now generate the citation with the actual Firestore document ID
-        const repositoryLink = `${window.location.origin}/cite/${docRef.id}`;
-        const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
-          formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
-        }, ${formData.date}, ${repositoryLink}`;
-
-        // Update the document with the correct citation
-        await updateDoc(doc(db, 'prompts', docRef.id), {
-          citation: citationText
-        });
-
-        console.log('✅ Citation updated with correct link');
-
-        setCitation(citationText);
-        setShowCitation(true);
-      } catch (error) {
-        console.error('❌ Error storing prompt in Firestore:', error);
+    try {
+      if (!formData.prompt || !formData.author) {
+        console.warn("⚠️ Missing required fields. Prompt NOT saved.");
+        return;
       }
-    } else {
-      // For non-authenticated users, generate citation without saving
-      const repositoryLink = `${window.location.origin}/cite/${Date.now()}`;
+
+      console.log('🧪 Attempting to save prompt to Firestore...');
+
+      // Save the prompt to get the auto-generated Firestore ID
+      const docRef = await addDoc(collection(db, 'prompts'), {
+        userId: user?.sub || 'anonymous',
+        prompt: formData.prompt,
+        author: formData.author,
+        date: formData.date,
+        aiModel: model,
+        additionalInfo: formData.additionalInfo,
+        citation: '', // Temporary empty citation
+        createdAt: Timestamp.now(),
+        deleted: false
+      });
+
+      console.log('✅ Prompt saved with ID:', docRef.id);
+
+      // Now generate the citation with the actual Firestore document ID
+      const repositoryLink = `${window.location.origin}/cite/${docRef.id}`;
       const citationText = `${formData.author}, "${firstFiveWords}...", ${model}${
         formData.additionalInfo ? `, ${formData.additionalInfo}` : ''
       }, ${formData.date}, ${repositoryLink}`;
+
+      // Update the document with the correct citation
+      await updateDoc(doc(db, 'prompts', docRef.id), {
+        citation: citationText
+      });
+
+      console.log('✅ Citation updated with correct link');
+
       setCitation(citationText);
       setShowCitation(true);
+    } catch (error) {
+      console.error('❌ Error storing prompt in Firestore:', error);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QRCodeSVG } from 'qrcode.react';
@@ -8,6 +8,9 @@ import { collection, addDoc, updateDoc, doc, Timestamp } from 'firebase/firestor
 
 const GeneratePrompt = () => {
   const { t } = useTranslation();
+  const { user, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     prompt: '',
     author: '',
@@ -18,8 +21,16 @@ const GeneratePrompt = () => {
   });
   const [citation, setCitation] = useState('');
   const [showCitation, setShowCitation] = useState(false);
-  const { user, isAuthenticated } = useAuth0();
-  const navigate = useNavigate();
+
+  // Auto-fill author field when user is authenticated
+  useEffect(() => {
+    if (isAuthenticated && user && !formData.author) {
+      setFormData(prev => ({
+        ...prev,
+        author: user.name || user.email || ''
+      }));
+    }
+  }, [isAuthenticated, user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

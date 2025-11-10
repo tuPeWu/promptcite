@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { db } from '../firebase';
@@ -16,6 +17,7 @@ const GeneratePrompt = () => {
   const [citation, setCitation] = useState('');
   const [showCitation, setShowCitation] = useState(false);
   const { user, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,8 +60,8 @@ const GeneratePrompt = () => {
 
       console.log('✅ Citation updated with correct link');
 
-      setCitation(citationText);
-      setShowCitation(true);
+      // Redirect to the citation detail page
+      navigate(`/cite/${docRef.id}`);
     } catch (error) {
       console.error('❌ Error storing prompt in Firestore:', error);
     }

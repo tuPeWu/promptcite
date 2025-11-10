@@ -128,6 +128,20 @@
     "title": "Kontakt",
     "name": "dr hab. Paweł Wolski, prof. AS",
     "institution": "Akademia Sztuki w Szczecinie / Uniwersytet Szczeciński",
+    "profile": {
+      "url": "https://akademiasztuki.eu/Product/pawel-wolski-dr-hab-68dcf899cd111",
+      "text": "Akademia Sztuki w Szczecinie"
+    },
+    "social": {
+      "linkedin": {
+        "url": "https://www.linkedin.com/in/pawelwolski-akademiasztuki",
+        "text": "LinkedIn"
+      },
+      "github": {
+        "url": "https://github.com/tuPeWu/promptograf",
+        "text": "GitHub"
+      }
+    },
     "links": {
       "profile": "https://www.akademiasztuki.eu/Product/pawel-wolski-dr-hab",
       "linkedin": "www.linkedin.com/in/pawelwolski-akademiasztuki",

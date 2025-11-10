@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Prompts collection - public read, authenticated write
+    match /prompts/{promptId} {
+      // Anyone can read prompts (for public citation viewing)
+      allow read: if true;
+
+      // Only authenticated users can create prompts
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid;
+
+      // Only the owner can update their prompts
+      allow update: if request.auth != null
+                    && resource.data.userId == request.auth.uid;
+
+      // Only the owner can delete (soft-delete) their prompts
+      allow delete: if request.auth != null
+                    && resource.data.userId == request.auth.uid;
+    }
+
+    // Users collection - only owners can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+  }
+}

@@ -13,10 +13,6 @@ const Contact: React.FC = () => {
     url: string;
     text: string;
   };
-  const github = t('contact.social.github', { returnObjects: true }) as {
-    url: string;
-    text: string;
-  };
 
   const emails = t('contact.email', { returnObjects: true }) as {
     as: string;
@@ -35,22 +31,13 @@ const Contact: React.FC = () => {
         </p>
         <p className="mb-6">
           {t('contact.institution')}
-          <br />
-          <a
-            href={profile.url}
-            className="text-blue-600 hover:text-blue-800"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {profile.text}
-          </a>
         </p>
 
         <h2 className="text-2xl font-semibold mb-4">
           {t('contact.findMe')}
         </h2>
         <ul className="list-none p-0">
-          <li>
+          <li className="mb-2">
             <a
               href={linkedin.url}
               className="text-blue-600 hover:text-blue-800"
@@ -60,14 +47,14 @@ const Contact: React.FC = () => {
               {linkedin.text}
             </a>
           </li>
-          <li>
+          <li className="mb-2">
             <a
-              href={github.url}
+              href={profile.url}
               className="text-blue-600 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {github.text}
+              {profile.text}
             </a>
           </li>
         </ul>

@@ -9,6 +9,10 @@ const Contact: React.FC = () => {
     url: string;
     text: string;
   };
+  const university = t('contact.university', { returnObjects: true }) as {
+    url: string;
+    text: string;
+  };
   const linkedin = t('contact.social.linkedin', { returnObjects: true }) as {
     url: string;
     text: string;
@@ -55,6 +59,16 @@ const Contact: React.FC = () => {
               rel="noopener noreferrer"
             >
               {profile.text}
+            </a>
+          </li>
+          <li className="mb-2">
+            <a
+              href={university.url}
+              className="text-blue-600 hover:text-blue-800"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {university.text}
             </a>
           </li>
         </ul>

@@ -25,12 +25,15 @@ const GeneratePrompt = () => {
   // Auto-fill author field when user is authenticated
   useEffect(() => {
     if (isAuthenticated && user && !formData.author) {
+      const userName = user.name || user.nickname || user.email || '';
+      console.log('🔍 Auto-filling author with:', userName);
+      console.log('👤 User object:', user);
       setFormData(prev => ({
         ...prev,
-        author: user.name || user.email || ''
+        author: userName
       }));
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, formData.author]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

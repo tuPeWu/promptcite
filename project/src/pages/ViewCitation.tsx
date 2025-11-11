@@ -179,13 +179,14 @@ const ViewCitation = () => {
         <div className="bg-gray-50 border border-gray-200 p-6 mb-8 rounded-lg">
           <h2 className="text-sm font-semibold text-gray-600 mb-4">{t('viewCitation.qrCodeLabel')}</h2>
           <div className="flex flex-col items-center">
-            <div ref={qrRef} className="bg-white p-4 rounded-lg shadow-sm mb-4">
+            <div ref={qrRef} className="bg-white p-4 rounded-lg shadow-sm mb-2">
               <QRCodeSVG
                 value={`${window.location.origin}/cite/${id}`}
                 size={200}
                 level="H"
               />
             </div>
+            <p className="text-sm font-medium text-gray-700 mb-4">promptcite.com</p>
             <button
               onClick={copyQRCode}
               className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors"

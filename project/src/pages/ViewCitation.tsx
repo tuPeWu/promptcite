@@ -24,29 +24,69 @@ const ViewCitation = () => {
       // Convert SVG to canvas
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
       const svgData = new XMLSerializer().serializeToString(svg);
       const img = new Image();
 
       img.onload = async () => {
         canvas.width = img.width;
         canvas.height = img.height;
-        ctx?.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0);
 
-        // Convert canvas to blob and copy to clipboard
-        canvas.toBlob(async (blob) => {
-          if (blob) {
+        // Try modern clipboard API first
+        try {
+          const blob = await new Promise<Blob | null>((resolve) => {
+            canvas.toBlob(resolve, 'image/png');
+          });
+
+          if (blob && navigator.clipboard && navigator.clipboard.write) {
             await navigator.clipboard.write([
               new ClipboardItem({ 'image/png': blob })
             ]);
             setQrCopied(true);
             setTimeout(() => setQrCopied(false), 2000);
+          } else {
+            // Fallback: download the image
+            downloadQRCode(canvas);
           }
-        });
+        } catch (clipboardErr) {
+          console.log('Clipboard API failed, using download fallback:', clipboardErr);
+          // Fallback: download the image
+          downloadQRCode(canvas);
+        }
       };
 
-      img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+      img.onerror = () => {
+        console.error('Failed to load SVG image');
+      };
+
+      // Use btoa with proper encoding
+      const base64 = btoa(unescape(encodeURIComponent(svgData)));
+      img.src = `data:image/svg+xml;base64,${base64}`;
     } catch (err) {
       console.error('Failed to copy QR code:', err);
+    }
+  };
+
+  const downloadQRCode = (canvas: HTMLCanvasElement) => {
+    try {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `qr-code-${id}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          setQrCopied(true);
+          setTimeout(() => setQrCopied(false), 2000);
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to download QR code:', err);
     }
   };
 

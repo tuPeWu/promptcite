@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { QRCodeSVG } from 'qrcode.react';
+
 import { useAuth0 } from '@auth0/auth0-react';
 import { db } from '../firebase';
 import { collection, addDoc, updateDoc, doc, Timestamp } from 'firebase/firestore';
@@ -17,20 +17,17 @@ const GeneratePrompt = () => {
     date: new Date().toISOString().split('T')[0],
     aiModel: '',
     otherModel: '',
-    additionalInfo: ''
+    additionalInfo: '',
   });
-  const [citation, setCitation] = useState('');
-  const [showCitation, setShowCitation] = useState(false);
 
   // Auto-fill author field when user is authenticated
   useEffect(() => {
     if (isAuthenticated && user && !formData.author) {
       const userName = user.name || user.nickname || user.email || '';
-      console.log('🔍 Auto-filling author with:', userName);
-      console.log('👤 User object:', user);
-      setFormData(prev => ({
+
+      setFormData((prev) => ({
         ...prev,
-        author: userName
+        author: userName,
       }));
     }
   }, [isAuthenticated, user, formData.author]);
@@ -42,11 +39,9 @@ const GeneratePrompt = () => {
 
     try {
       if (!formData.prompt || !formData.author) {
-        console.warn("⚠️ Missing required fields. Prompt NOT saved.");
+        console.warn('⚠️ Missing required fields. Prompt NOT saved.');
         return;
       }
-
-      console.log('🧪 Attempting to save prompt to Firestore...');
 
       // Save the prompt to get the auto-generated Firestore ID
       const docRef = await addDoc(collection(db, 'prompts'), {
@@ -58,10 +53,8 @@ const GeneratePrompt = () => {
         additionalInfo: formData.additionalInfo,
         citation: '', // Temporary empty citation
         createdAt: Timestamp.now(),
-        deleted: false
+        deleted: false,
       });
-
-      console.log('✅ Prompt saved with ID:', docRef.id);
 
       // Now generate the citation with the actual Firestore document ID
       const repositoryLink = `${window.location.origin}/cite/${docRef.id}`;
@@ -71,10 +64,8 @@ const GeneratePrompt = () => {
 
       // Update the document with the correct citation
       await updateDoc(doc(db, 'prompts', docRef.id), {
-        citation: citationText
+        citation: citationText,
       });
-
-      console.log('✅ Citation updated with correct link');
 
       // Redirect to the citation detail page
       navigate(`/cite/${docRef.id}`);
@@ -171,23 +162,6 @@ const GeneratePrompt = () => {
           </button>
         </form>
       </div>
-      {showCitation && (
-        <div className="hidden md:block w-1/2 mt-8 p-6 bg-gray-50 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">{t('generatePrompt.citationTitle')}</h2>
-          <div className="bg-white p-4 rounded border mb-4">
-            <p className="font-mono">{citation}</p>
-            <button
-              onClick={() => navigator.clipboard.writeText(citation)}
-              className="mt-2 px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 transition-colors"
-            >
-              {t('generatePrompt.copyButton')}
-            </button>
-          </div>
-          <div className="flex justify-center">
-            <QRCodeSVG value={citation} size={128} />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

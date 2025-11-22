@@ -25,9 +25,7 @@ const Contact: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-6">
-        {t('contact.title')}
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">{t('contact.title')}</h1>
 
       <div className="mb-6">
         <img
@@ -38,18 +36,14 @@ const Contact: React.FC = () => {
       </div>
 
       <div className="prose prose-lg">
-        <p className="text-xl font-semibold">
-          {t('contact.name')}
-        </p>
+        <p className="text-xl font-semibold">{t('contact.name')}</p>
         <p className="mb-6">
           {profile.text}
           <br />
           {university.text}
         </p>
 
-        <h2 className="text-2xl font-semibold mb-4">
-          {t('contact.findMe')}
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4">{t('contact.findMe')}</h2>
         <ul className="list-none p-0">
           <li className="mb-2">
             <a
@@ -63,21 +57,13 @@ const Contact: React.FC = () => {
           </li>
         </ul>
 
-        <h2 className="text-2xl font-semibold mt-6 mb-4">
-          {t('contact.contactMe')}
-        </h2>
+        <h2 className="text-2xl font-semibold mt-6 mb-4">{t('contact.contactMe')}</h2>
         <p>
-          <a
-            href={`mailto:${emails.as}`}
-            className="text-blue-600 hover:text-blue-800"
-          >
+          <a href={`mailto:${emails.as}`} className="text-blue-600 hover:text-blue-800">
             {emails.as}
           </a>
           <br />
-          <a
-            href={`mailto:${emails.usz}`}
-            className="text-blue-600 hover:text-blue-800"
-          >
+          <a href={`mailto:${emails.usz}`} className="text-blue-600 hover:text-blue-800">
             {emails.usz}
           </a>
         </p>

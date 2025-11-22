@@ -41,9 +41,7 @@ const ViewCitation = () => {
           });
 
           if (blob && navigator.clipboard && navigator.clipboard.write) {
-            await navigator.clipboard.write([
-              new ClipboardItem({ 'image/png': blob })
-            ]);
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
             setQrCopied(true);
             setTimeout(() => setQrCopied(false), 2000);
           } else {
@@ -93,7 +91,7 @@ const ViewCitation = () => {
   useEffect(() => {
     const fetchPrompt = async () => {
       if (!id) {
-        console.warn("❌ No ID found. Aborting...");
+        console.warn('❌ No ID found. Aborting...');
         setLoading(false);
         return;
       }
@@ -118,18 +116,18 @@ const ViewCitation = () => {
           }, ${data.date}, ${window.location.origin}/cite/${id}`;
           setCitation(citationText);
         } else {
-          console.warn("⚠️ Citation not found - Document does not exist in Firestore");
+          console.warn('⚠️ Citation not found - Document does not exist in Firestore');
           console.log('Document ID attempted:', id);
         }
       } catch (err: any) {
-        console.error("❌ Error fetching citation:", err);
-        console.error("Error code:", err?.code);
-        console.error("Error message:", err?.message);
+        console.error('❌ Error fetching citation:', err);
+        console.error('Error code:', err?.code);
+        console.error('Error message:', err?.message);
 
         // Check if it's a permission error
         if (err?.code === 'permission-denied') {
-          console.error("🚫 PERMISSION DENIED - Firestore rules may not be set correctly");
-          console.error("Please check Firestore security rules in Firebase Console");
+          console.error('🚫 PERMISSION DENIED - Firestore rules may not be set correctly');
+          console.error('Please check Firestore security rules in Firebase Console');
         }
       } finally {
         setLoading(false);
@@ -151,7 +149,9 @@ const ViewCitation = () => {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">{t('viewCitation.notFoundTitle')}</h1>
+          <h1 className="text-2xl font-bold text-red-600 mb-4">
+            {t('viewCitation.notFoundTitle')}
+          </h1>
           <p className="text-gray-600">{t('viewCitation.notFoundMessage')}</p>
         </div>
       </div>
@@ -165,7 +165,9 @@ const ViewCitation = () => {
 
         {/* Citation Box */}
         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-          <h2 className="text-sm font-semibold text-gray-600 mb-2">{t('viewCitation.citationLabel')}</h2>
+          <h2 className="text-sm font-semibold text-gray-600 mb-2">
+            {t('viewCitation.citationLabel')}
+          </h2>
           <p className="font-mono text-sm text-gray-800 leading-relaxed">{citation}</p>
           <button
             onClick={() => navigator.clipboard.writeText(citation)}
@@ -177,14 +179,12 @@ const ViewCitation = () => {
 
         {/* QR Code Section */}
         <div className="bg-gray-50 border border-gray-200 p-6 mb-8 rounded-lg">
-          <h2 className="text-sm font-semibold text-gray-600 mb-4">{t('viewCitation.qrCodeLabel')}</h2>
+          <h2 className="text-sm font-semibold text-gray-600 mb-4">
+            {t('viewCitation.qrCodeLabel')}
+          </h2>
           <div className="flex flex-col items-center">
             <div ref={qrRef} className="bg-white p-4 rounded-lg shadow-sm mb-2">
-              <QRCodeSVG
-                value={`${window.location.origin}/cite/${id}`}
-                size={200}
-                level="H"
-              />
+              <QRCodeSVG value={`${window.location.origin}/cite/${id}`} size={200} level="H" />
             </div>
             <p className="text-sm font-medium text-gray-700 mb-4">promptcite.com</p>
             <button
@@ -199,36 +199,48 @@ const ViewCitation = () => {
         {/* Bibliographic Information */}
         <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.author')}</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+              {t('viewCitation.fields.author')}
+            </h3>
             <p className="text-lg text-gray-800">{promptData.author}</p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.prompt')}</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+              {t('viewCitation.fields.prompt')}
+            </h3>
             <p className="text-gray-800 bg-gray-50 p-4 rounded border">{promptData.prompt}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.aiModel')}</h3>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                {t('viewCitation.fields.aiModel')}
+              </h3>
               <p className="text-gray-800">{promptData.aiModel}</p>
             </div>
 
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.date')}</h3>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                {t('viewCitation.fields.date')}
+              </h3>
               <p className="text-gray-800">{promptData.date}</p>
             </div>
           </div>
 
           {promptData.additionalInfo && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.additionalInfo')}</h3>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                {t('viewCitation.fields.additionalInfo')}
+              </h3>
               <p className="text-gray-800">{promptData.additionalInfo}</p>
             </div>
           )}
 
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">{t('viewCitation.fields.citationId')}</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+              {t('viewCitation.fields.citationId')}
+            </h3>
             <p className="font-mono text-sm text-gray-600">{id}</p>
           </div>
         </div>

@@ -10,16 +10,12 @@ export default function AuthButtons() {
       {!isAuthenticated ? (
         <>
           <button onClick={() => loginWithRedirect()}>Log In</button>
-          <button onClick={() => loginWithRedirect({ screen_hint: 'signup' })}>
-            Sign Up
-          </button>
+          <button onClick={() => loginWithRedirect({ screen_hint: 'signup' })}>Sign Up</button>
         </>
       ) : (
         <>
           <p>👋 Hello, {user?.name}</p>
-          <button onClick={() => logout({ returnTo: window.location.origin })}>
-            Log Out
-          </button>
+          <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
         </>
       )}
     </div>

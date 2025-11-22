@@ -7,20 +7,30 @@ const Home: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="relative w-screen h-screen bg-white flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative w-screen h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center overflow-hidden">
       {/* ✅ Fullscreen background logo */}
+      {/* ✅ Fullscreen background logo - Light Mode */}
       <div
-        className="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-10"
-        style={{ 
+        className="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-10 dark:hidden"
+        style={{
           backgroundImage: "url('/logo.png')",
-          transform: "translate(7%, -3%)"  
+          transform: 'translate(7%, -3%)',
+        }}
+      ></div>
+
+      {/* ✅ Fullscreen background logo - Dark Mode */}
+      <div
+        className="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-10 hidden dark:block"
+        style={{
+          backgroundImage: "url('/promptcite_logo_negatyw.png')",
+          transform: 'translate(7%, -3%)',
         }}
       ></div>
 
       {/* ✅ Foreground content */}
       <div className="relative z-10 text-center space-y-0 max-w-2xl px-4 mt-[-200px]">
         <h1
-          className="text-4xl font-bold text-gray-900 sm:text-5xl mb-8"
+          className="text-4xl font-bold text-gray-900 dark:text-gray-100 sm:text-5xl mb-8"
           dangerouslySetInnerHTML={{ __html: t('home.title') }}
         />
         <button

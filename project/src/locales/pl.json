@@ -30,12 +30,11 @@
   "home": {
     "title": "Bibliografia <br/> Twoich promptów AI",
     "cta": "CYTUJ!"
-},
+  },
   "about": {
     "title": "PromptCite - Zautomatyzowana bibliografia promptów AI",
     "intro": "PromptCite stanowi narzędzie służące do automatycznego katalogowania, organizowania i opisu bibliograficznego promptów AI używanych w działalności naukowej, edukacyjnej i twórczej.",
     "goal": "Projekt PromptCite ma na celu uświadomienie użytkownikom etycznych implikacji korzystania z narzędzi AI oraz normalizację codziennego obcowania z tą technologią w nauce, pracy, sztuce i w codziennym życiu"
-
   },
   "signin": {
     "title": {
@@ -94,7 +93,6 @@
     "content": "..."
   },
   "instructions": {
-  
     "title": "Jak korzystać z Promptcite",
     "gettingStarted": {
       "heading": "Zaczynamy",

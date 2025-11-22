@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Search, Edit2, Trash2 } from 'lucide-react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { db } from '../firebase';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  updateDoc,
-  doc,
-  Timestamp,
-} from 'firebase/firestore';
+import { collection, query, where, getDocs, updateDoc, doc, Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 const MyPrompts = () => {
@@ -72,7 +64,10 @@ const MyPrompts = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-6">My Prompts</h1>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <Search
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          />
           <input
             type="text"
             placeholder="Search prompts..."

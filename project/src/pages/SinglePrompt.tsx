@@ -12,7 +12,7 @@ const SinglePrompt = () => {
   useEffect(() => {
     const fetchPrompt = async () => {
       if (!id) {
-        console.warn("❌ No ID found. Aborting...");
+        console.warn('❌ No ID found. Aborting...');
         setLoading(false);
         return;
       }
@@ -26,10 +26,10 @@ const SinglePrompt = () => {
           setPromptData(data);
           generateCitation(data);
         } else {
-          console.warn("⚠️ Document not found");
+          console.warn('⚠️ Document not found');
         }
       } catch (err) {
-        console.error("❌ Error fetching document:", err);
+        console.error('❌ Error fetching document:', err);
       } finally {
         setLoading(false);
       }

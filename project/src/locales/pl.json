@@ -34,7 +34,8 @@
   "about": {
     "title": "PromptCite - Zautomatyzowana bibliografia promptów AI",
     "intro": "PromptCite stanowi narzędzie służące do automatycznego katalogowania, organizowania i opisu bibliograficznego promptów AI używanych w działalności naukowej, edukacyjnej i twórczej.",
-    "goal": "Projekt PromptCite ma na celu uświadomienie użytkownikom etycznych implikacji korzystania z narzędzi AI oraz normalizację codziennego obcowania z tą technologią w nauce, pracy, sztuce i w codziennym życiu"
+    "goal": "Projekt PromptCite ma na celu uświadomienie użytkownikom etycznych implikacji korzystania z narzędzi AI oraz normalizację codziennego obcowania z tą technologią w nauce, pracy, sztuce i w codziennym życiu",
+    "logoDescription": "Logo PromptCite zostało zaprojektowane przez zdolnego młodego artystę Edka,\nktóry po godzinach walczy jezcze ze złem (wespół z bratem Tadkiem)."
   },
   "signin": {
     "title": {
@@ -121,7 +122,6 @@
       "example": "[Autor], „Pierwszych pięć słów promptu…”, [model AI], [Dodatkowe informacje], [Data], [Link do repozytorium]"
     }
   },
-
   "contact": {
     "title": "Kontakt",
     "name": "dr hab. Paweł Wolski, prof. AS",

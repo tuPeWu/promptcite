@@ -34,7 +34,8 @@
   "about": {
     "title": "PromptCite - Automated AI Prompt Bibliography",
     "intro": "PromptCite is a tool designed for the automatic cataloging, organizing, and bibliographic description of AI prompts used in scientific, educational, and creative activities.",
-    "goal": "The PromptCite project aims to raise awareness among users about the ethical implications of using AI tools and to normalize everyday interaction with this technology in science, work, art, and daily life."
+    "goal": "The PromptCite project aims to raise awareness among users about the ethical implications of using AI tools and to normalize everyday interaction with this technology in science, work, art, and daily life.",
+    "logoDescription": "PromptCite's logo has been designed by an aspiring artist Edek,\nseen here on his way to fight crime (alongside his brother Tadek)."
   },
   "signin": {
     "title": {

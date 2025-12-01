@@ -163,6 +163,7 @@
     "qrCodeLabel": "Kod QR",
     "copyQRButton": "Kopiuj kod QR",
     "qrCopied": "✓ Skopiowano!",
+    "copied": "Skopiowano!",
     "loading": "Ładowanie cytowania...",
     "notFoundTitle": "Nie znaleziono cytowania",
     "notFoundMessage": "Żądane cytowanie nie istnieje lub zostało usunięte.",

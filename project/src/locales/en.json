@@ -161,6 +161,7 @@
     "qrCodeLabel": "QR Code",
     "copyQRButton": "Copy QR Code",
     "qrCopied": "✓ Copied!",
+    "copied": "Copied!",
     "loading": "Loading citation...",
     "notFoundTitle": "Citation Not Found",
     "notFoundMessage": "The requested citation does not exist or has been removed.",

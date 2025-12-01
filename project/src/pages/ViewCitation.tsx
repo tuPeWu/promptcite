@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QRCodeSVG } from 'qrcode.react';
@@ -12,6 +12,7 @@ const ViewCitation = () => {
   const [promptData, setPromptData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [citation, setCitation] = useState('');
+  const [citationCopied, setCitationCopied] = useState(false);
   const [qrCopied, setQrCopied] = useState(false);
 
   const copyQRCode = async () => {
@@ -111,9 +112,8 @@ const ViewCitation = () => {
           // Generate citation with the actual document ID
           const firstFiveWords = data.prompt?.split(' ').slice(0, 5).join(' ');
           const model = data.aiModel === 'Other' ? data.otherModel : data.aiModel;
-          const citationText = `${data.author}, "${firstFiveWords}...", ${model}${
-            data.additionalInfo ? `, ${data.additionalInfo}` : ''
-          }, ${data.date}, ${window.location.origin}/cite/${id}`;
+          const citationText = `${data.author}, "${firstFiveWords}...", ${model}${data.additionalInfo ? `, ${data.additionalInfo}` : ''
+            }, ${data.date}, ${window.location.origin}/cite/${id}`;
           setCitation(citationText);
         } else {
           console.warn('⚠️ Citation not found - Document does not exist in Firestore');
@@ -170,10 +170,17 @@ const ViewCitation = () => {
           </h2>
           <p className="font-mono text-sm text-gray-800 leading-relaxed">{citation}</p>
           <button
-            onClick={() => navigator.clipboard.writeText(citation)}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+            onClick={() => {
+              navigator.clipboard.writeText(citation);
+              setCitationCopied(true);
+              setTimeout(() => setCitationCopied(false), 2000);
+            }}
+            className={`mt-4 px-4 py-2 text-sm rounded transition-colors ${citationCopied
+              ? 'bg-green-600 hover:bg-green-700 text-white'
+              : 'bg-blue-600 hover:bg-blue-700 text-white'
+              }`}
           >
-            {t('viewCitation.copyButton')}
+            {citationCopied ? t('viewCitation.copied') : t('viewCitation.copyButton')}
           </button>
         </div>
 
@@ -191,7 +198,7 @@ const ViewCitation = () => {
               onClick={copyQRCode}
               className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors"
             >
-              {qrCopied ? t('viewCitation.qrCopied') : t('viewCitation.copyQRButton')}
+              {qrCopied ? t('viewCitation.copied') : t('viewCitation.copyQRButton')}
             </button>
           </div>
         </div>

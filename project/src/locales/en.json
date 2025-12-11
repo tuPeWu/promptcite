@@ -6,7 +6,8 @@
     "contact": "Contact",
     "signin": "Sign in",
     "signout": "Sign out",
-    "generate": "Generate"
+    "generate": "Generate",
+    "promptPrint": "EcoPrompt"
   },
   "form": {
     "prompt": "Paste your prompt here",
@@ -172,6 +173,62 @@
       "date": "Date",
       "additionalInfo": "Additional Information",
       "citationId": "Citation ID"
+    }
+  },
+  "ecoPrompt": {
+    "title": "EcoPrompt Calculator",
+    "subtitle": "Estimate the environmental footprint of your AI prompts.",
+    "input": {
+      "label": "Paste your prompt",
+      "placeholder": "Type or paste your prompt here...",
+      "estimatedTokens": "~{{count}} tokens estimated"
+    },
+    "modelClass": {
+      "label": "Model Class",
+      "A": {
+        "name": "Class A - Highly optimized small/mini models",
+        "description": "e.g. GPT-4.1 mini-like / small Gemini"
+      },
+      "B": {
+        "name": "Class B - Efficient frontier-grade model",
+        "description": "e.g. GPT-4o / Gemini text, median"
+      },
+      "C": {
+        "name": "Class C - Large / less optimized frontier model",
+        "description": ">200B, older stacks"
+      }
+    },
+    "responseType": {
+      "label": "Response Type",
+      "short": "Short factual reply",
+      "chat": "Chat / explanation",
+      "research": "Deep research / chain-of-thought",
+      "custom": "Custom"
+    },
+    "tokens": {
+      "input": "Input Tokens",
+      "output": "Output Tokens"
+    },
+    "gridRegion": {
+      "label": "Grid Region (Carbon Intensity)",
+      "global": "Global Default",
+      "eu": "EU Average",
+      "us": "US Average"
+    },
+    "results": {
+      "title": "Estimated Footprint",
+      "energy": "Energy Consumed",
+      "carbon": "Carbon Emissions",
+      "water": "Water Consumption",
+      "disclaimer": "* Estimates based on linear approximation model. Actual usage may vary.",
+      "viewSources": "View Data Sources & Methodology"
+    },
+    "sources": {
+      "title": "Data Sources & Methodology",
+      "back": "Back to Calculator",
+      "intro": "The EcoPrompt calculator uses a linear approximation model based on empirical studies of LLM inference energy consumption. The model estimates energy usage ($E$) as a function of a fixed base overhead plus per-token costs for input and output.",
+      "waterCarbon": "Water consumption is estimated at 1.5 mL per Wh of IT energy, reflecting direct and indirect cooling needs in modern data centers. Carbon emissions are calculated based on the selected grid region's carbon intensity.",
+      "references": "References"
     }
   }
 }

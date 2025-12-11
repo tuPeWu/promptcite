@@ -51,6 +51,11 @@ const Header: React.FC = () => {
                 {t('nav.generate')}
               </Link>
             </li>
+            <li>
+              <Link to="/prompt-print" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                {t('nav.promptPrint')}
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -129,6 +134,13 @@ const Header: React.FC = () => {
               onClick={closeMenu}
             >
               {t('nav.generate')}
+            </Link>
+            <Link
+              to="/prompt-print"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={closeMenu}
+            >
+              {t('nav.promptPrint')}
             </Link>
 
             {/* Mobile Language Switcher */}

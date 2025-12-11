@@ -12,6 +12,8 @@ import MyPrompts from './pages/MyPrompts';
 import GeneratePrompt from './pages/GeneratePrompt';
 import SinglePrompt from './pages/SinglePrompt';
 import ViewCitation from './pages/ViewCitation';
+import PromptPrint from './pages/PromptPrint';
+import PromptPrintSources from './pages/PromptPrintSources';
 import PrivateRoute from './PrivateRoute';
 import { useAuth0 } from '@auth0/auth0-react';
 import { syncUserToFirebase } from './utils/syncUserToFirebase';
@@ -45,6 +47,8 @@ const App = () => {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/generate" element={<GeneratePrompt />} />
               <Route path="/cite/:id" element={<ViewCitation />} />
+              <Route path="/prompt-print" element={<PromptPrint />} />
+              <Route path="/prompt-print/sources" element={<PromptPrintSources />} />
               <Route path="/prompts/:id" element={<SinglePrompt />} />
               <Route
                 path="/settings"

@@ -6,7 +6,8 @@
     "contact": "Kontakt",
     "signin": "Zaloguj się",
     "signout": "Wyloguj się",
-    "generate": "Generuj cytat"
+    "generate": "Generuj cytat",
+    "promptPrint": "EcoPrompt"
   },
   "form": {
     "prompt": "Wklej tutaj swój prompt",
@@ -174,6 +175,62 @@
       "date": "Data",
       "additionalInfo": "Dodatkowe informacje",
       "citationId": "Nr ref."
+    }
+  },
+  "ecoPrompt": {
+    "title": "Kalkulator EcoPrompt",
+    "subtitle": "Oszacuj ślad środowiskowy swoich promptów AI.",
+    "input": {
+      "label": "Wklej swój prompt",
+      "placeholder": "Wpisz lub wklej tutaj swój prompt...",
+      "estimatedTokens": "szacowano ~{{count}} tokenów"
+    },
+    "modelClass": {
+      "label": "Klasa Modelu",
+      "A": {
+        "name": "Klasa A - Wysoce zoptymalizowane małe modele",
+        "description": "np. GPT-4.1 mini / małe Gemini"
+      },
+      "B": {
+        "name": "Klasa B - Wydajne modele frontier",
+        "description": "np. GPT-4o / Gemini text, mediana"
+      },
+      "C": {
+        "name": "Klasa C - Duże / mniej zoptymalizowane modele frontier",
+        "description": ">200B, starsze architektury"
+      }
+    },
+    "responseType": {
+      "label": "Typ Odpowiedzi",
+      "short": "Krótka odpowiedź faktograficzna",
+      "chat": "Czat / wyjaśnienie",
+      "research": "Głęboki research / chain-of-thought",
+      "custom": "Niestandardowy"
+    },
+    "tokens": {
+      "input": "Tokeny Wejściowe",
+      "output": "Tokeny Wyjściowe"
+    },
+    "gridRegion": {
+      "label": "Region Sieci (Intensywność Węglowa)",
+      "global": "Średnia Globalna",
+      "eu": "Średnia UE",
+      "us": "Średnia USA"
+    },
+    "results": {
+      "title": "Szacowany Ślad",
+      "energy": "Zużycie Energii",
+      "carbon": "Emisja CO₂",
+      "water": "Zużycie Wody",
+      "disclaimer": "* Szacunki oparte na liniowym modelu aproksymacji. Rzeczywiste zużycie może się różnić.",
+      "viewSources": "Zobacz Źródła Danych i Metodologię"
+    },
+    "sources": {
+      "title": "Źródła Danych i Metodologia",
+      "back": "Powrót do Kalkulatora",
+      "intro": "Kalkulator EcoPrompt wykorzystuje liniowy model aproksymacji oparty na badaniach empirycznych zużycia energii przez wnioskowanie LLM. Model szacuje zużycie energii ($E$) jako funkcję stałego narzutu bazowego plus koszty za token dla wejścia i wyjścia.",
+      "waterCarbon": "Zużycie wody szacuje się na 1,5 mL na Wh energii IT, co odzwierciedla bezpośrednie i pośrednie potrzeby chłodzenia w nowoczesnych centrach danych. Emisje dwutlenku węgla są obliczane na podstawie intensywności węglowej wybranego regionu sieci.",
+      "references": "Referencje"
     }
   }
 }
